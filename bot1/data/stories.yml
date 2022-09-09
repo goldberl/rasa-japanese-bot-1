@@ -1,0 +1,16 @@
+version: "3.1"
+
+stories:
+
+- story: do activity
+  steps:
+  - action: utter_greet
+  - intent: greet
+  - action: activity_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_activity_slots
+  - action: utter_askme
+  - intent: goodbye
+  - action: utter_goodbye
