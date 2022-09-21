@@ -1,3 +1,3 @@
 # rasa-japanese-bot
 
-Rasa chatbots for Japanese language learners.
+Rasa chatbots for beginner Japanese language learners.
