@@ -1,0 +1,63 @@
+version: "3.1"
+
+stories:
+
+- story: ask user questions
+  steps:
+  - action: utter_greet
+  - intent: greet
+  - action: activity_form
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_activity_slots
+  - action: utter_askme
+
+
+- story: ask phone number
+  steps:
+    - intent: ask_phone_num
+    - action: utter_phone_num
+    - action: action_check_numQ
+    - slot_was_set:
+      - quesAsked: not null
+
+- story: ask hometown
+  steps:
+    - intent: ask_hometown
+    - action: utter_hometown
+    - action: action_check_numQ
+    - slot_was_set:
+      - quesAsked: not null
+
+- story: ask school year
+  steps:
+    - intent: ask_school_year
+    - action: utter_school_year
+    - action: action_check_numQ
+    - slot_was_set:
+      - quesAsked: not null
+
+- story: ask age
+  steps:
+    - intent: ask_age
+    - action: utter_age
+    - action: action_check_numQ
+    - slot_was_set:
+      - quesAsked: not null
+
+- story: ask major
+  steps:
+    - intent: ask_major
+    - action: utter_major
+    - action: action_check_numQ
+    - slot_was_set:
+      - quesAsked: not null
+
+- story: ask name
+  steps:
+    - intent: ask_name
+    - action: utter_name
+    - action: action_check_numQ
+    - slot_was_set:
+      - quesAsked: not null
