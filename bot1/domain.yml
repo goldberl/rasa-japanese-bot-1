@@ -71,6 +71,15 @@ responses:
   utter_major:
   - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
 
+  utter_out_of_scope:
+  - text: Sorry, I can't handle that request.
+
+  utter_ask_rephrase:
+  - text: Please rephrase?
+
+  utter_default:
+  - text: I'm sorry, I can not help you.
+
 entities:
 - name
 - phone_num
@@ -179,6 +188,10 @@ actions:
   - utter_major
   - action_check_numQ
   - action_default_fallback
+  - action_default_ask_affirmation
+  - utter_out_of_scope
+  - utter_ask_rephrase
+  - utter_default
 
 session_config:
   session_expiration_time: 60

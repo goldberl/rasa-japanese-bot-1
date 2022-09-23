@@ -160,3 +160,9 @@ nlu:
     - せんこうはなんですか
     - 専攻は
     - 専攻はなんですか
+
+- intent: out_of_scope
+  examples: |
+    - Do you speak English?
+    - What is 5 + 11?
+    - Who is the US President?
