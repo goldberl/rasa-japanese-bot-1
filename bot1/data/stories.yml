@@ -4,7 +4,6 @@ stories:
 
 - story: ask user questions
   steps:
-  - action: utter_greet
   - intent: greet
   - action: activity_form
   - slot_was_set:
@@ -12,7 +11,6 @@ stories:
   - active_loop: null
   - action: utter_activity_slots
   - action: utter_askme
-
 
 - story: ask phone number
   steps:
@@ -24,6 +22,7 @@ stories:
 
 - story: ask hometown
   steps:
+    - action: after_handle_no_trip_location
     - intent: ask_hometown
     - action: utter_hometown
     - action: action_check_numQ

@@ -3,6 +3,7 @@ version: "3.1"
 nlu:
 - intent: greet
   examples: |
+    - こんにちは。
     - こんにちは
     - こんばんは
     - おはようございます
@@ -53,6 +54,7 @@ nlu:
   examples: |
     - [アメリカ](hometown)です。
     - [ちゅうごく](hometown)です。
+    - [カリフォルニア](hometown)
     - [中国](hometown)です。
     - [Maple Glen](hometown)です。
     - しゅっしんは[ニューヨーク](hometown)です。

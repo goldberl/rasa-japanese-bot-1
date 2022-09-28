@@ -71,14 +71,14 @@ responses:
   utter_major:
   - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
 
-  utter_out_of_scope:
-  - text: Sorry, I can't handle that request.
-
-  utter_ask_rephrase:
-  - text: Please rephrase?
-
-  utter_default:
-  - text: I'm sorry, I can not help you.
+  # utter_out_of_scope:
+  # - text: Sorry, I can't handle that request.
+  #
+  # utter_ask_rephrase:
+  # - text: Please rephrase?
+  #
+  # utter_default:
+  # - text: I'm sorry, I can not help you.
 
 entities:
 - name
@@ -158,6 +158,11 @@ slots:
     - type: custom
     # if this line is in code, custom action runs twice
     # action: action_check_numQ
+  #
+  # story:
+  #   type: any
+  #   mappings:
+  #   - type: custom
 
 forms:
   activity_form:
@@ -187,11 +192,12 @@ actions:
   - utter_age
   - utter_major
   - action_check_numQ
-  - action_default_fallback
-  - action_default_ask_affirmation
-  - utter_out_of_scope
-  - utter_ask_rephrase
-  - utter_default
+  # - action_default_fallback
+  # - action_default_ask_affirmation
+  # - utter_out_of_scope
+  # - utter_ask_rephrase
+  # - utter_default
+  # - after_handle_no_trip_location
 
 session_config:
   session_expiration_time: 60

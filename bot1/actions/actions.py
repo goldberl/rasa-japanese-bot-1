@@ -61,15 +61,52 @@ class ActionDefaultFallback(Action):
         dispatcher.utter_message("Sorry, can you rephrase that message?")
 
         # tell the user they are being passed to a customer service agent
-        dispatcher.utter_message(text="I am passing you to a human...")
+        # dispatcher.utter_message(text="I am passing you to a human...")
 
         # assume there's a function to call customer service
         # pass the tracker so that the agent has a record of the conversation between the user
         # and the bot for context
-        call_customer_service(tracker)
+        # call_customer_service(tracker)
 
         # pause the tracker so that the bot stops responding to user input
-        return [ConversationPaused(), UserUtteranceReverted()]
+        # return [ConversationPaused(), UserUtteranceReverted()]
+        return [UserUtteranceReverted()]
+
+# # We will catch NLU uncertainty here and override their function.
+# class ActionDefaultAskAffirmation(Action):
+#
+#     def name(self):
+#         return "action_default_ask_affirmation"
+#
+#
+#     async def run(self, dispatcher, tracker, domain):
+#
+#         print('In ActionDefaultAskAffirmation!!')
+#         story = tracker.get_slot('story')
+#         hometown = tracker.get_slot('hometown')
+#         lastOutput = tracker.latest_message['text']
+#
+#         # We will start each story with an action that sets
+#         # the story slot so we know which conversation the user is having.
+#
+#         if story == 'trip' and hometown is None:
+#         #print("message is " + tracker.latest_message['text'], "text2")
+#
+#         #Lets just say they’re in New York
+#             return [SlotSet("hometown", "New York"), FollowupAction("after_handle_no_trip_location")]
+#
+#         else:
+#             print("We are in default ask affirmation action and have not handled this scenario")
+#             return []
+#
+#
+# class AfterHandleNoTripLocation(Action):
+#
+#     def name(self) -> Text:
+#         return "after_handle_no_trip_location"
+#
+#     def run(self, dispatcher, tracker, domain):
+#         return []
 
 # # class ActionDefaultFallback(Action):
 #
