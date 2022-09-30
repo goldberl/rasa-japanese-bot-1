@@ -29,16 +29,16 @@ rules:
   - action: utter_askme
 
 # simple fallback:
-# - rule: Single stage fallback | ask user to choose what they meant
-#   steps:
-#   - intent: nlu_fallback
-#   - action: action_default_ask_affirmation
-#
-# - rule: Single stage fallback | call default fallback if user is not ok
-#   steps:
-#   - action: action_default_ask_affirmation
-#   - intent: out_of_scope
-#   - action: action_default_fallback
+- rule: Single stage fallback | ask user to choose what they meant
+  steps:
+  - intent: nlu_fallback
+  - action: action_default_ask_affirmation
+
+- rule: Single stage fallback | call default fallback if user is not ok
+  steps:
+  - action: action_default_ask_affirmation
+  - intent: out_of_scope
+  - action: action_default_fallback
 
 # - rule: out-of-scope
 #   steps:

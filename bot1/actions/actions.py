@@ -13,6 +13,8 @@ from rasa_sdk.events import SlotSet
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import UserUtteranceReverted
+from rasa_sdk.events import FollowupAction
+
 
 class ActionCheckNumQuestions(Action):
 
@@ -44,33 +46,63 @@ class ActionCheckNumQuestions(Action):
 
         return [SlotSet("quesAsked", num_q)]
 
+class ActionDefaultAskAffirmation(Action):
 
-class ActionDefaultFallback(Action):
-    """Executes the fallback action and goes back to the previous state
-    of the dialogue"""
+    def name(self):
+        return "action_default_ask_affirmation"
+
+    async def run(self, dispatcher, tracker, domain):
+        print("in ActionDefaultAskAffirmation")
+        return [FollowupAction("after_handle_did_not_understand_answer")]
+
+class AfterHandleDidNotUnderstandAnswer(Action):
 
     def name(self) -> Text:
-        return "action_default_fallback"
+        return "after_handle_did_not_understand_answer"
 
-    async def run(
-        self,
-        dispatcher: CollectingDispatcher,
+    def run(self, dispatcher, tracker, domain):
+        print("in AfterHandleDidNotUnderstandAnswer")
+        return []
+
+class ActionTest(Action):
+
+    def name(self) -> Text:
+        return "action_test"
+
+    def run(self, dispatcher: CollectingDispatcher,
         tracker: Tracker,
-        domain: Dict[Text, Any],
-    ) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message("Sorry, can you rephrase that message?")
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
-        # tell the user they are being passed to a customer service agent
-        # dispatcher.utter_message(text="I am passing you to a human...")
+        print("We made it out of the FORM!")
+        return[]
 
-        # assume there's a function to call customer service
-        # pass the tracker so that the agent has a record of the conversation between the user
-        # and the bot for context
-        # call_customer_service(tracker)
 
-        # pause the tracker so that the bot stops responding to user input
-        # return [ConversationPaused(), UserUtteranceReverted()]
-        return [UserUtteranceReverted()]
+# class ActionDefaultFallback(Action):
+#     """Executes the fallback action and goes back to the previous state
+#     of the dialogue"""
+#
+#     def name(self) -> Text:
+#         return "action_default_fallback"
+#
+#     async def run(
+#         self,
+#         dispatcher: CollectingDispatcher,
+#         tracker: Tracker,
+#         domain: Dict[Text, Any],
+#     ) -> List[Dict[Text, Any]]:
+#         dispatcher.utter_message("Sorry, can you rephrase that message?")
+#
+#         # tell the user they are being passed to a customer service agent
+#         # dispatcher.utter_message(text="I am passing you to a human...")
+#
+#         # assume there's a function to call customer service
+#         # pass the tracker so that the agent has a record of the conversation between the user
+#         # and the bot for context
+#         # call_customer_service(tracker)
+#
+#         # pause the tracker so that the bot stops responding to user input
+#         # return [ConversationPaused(), UserUtteranceReverted()]
+#         return [UserUtteranceReverted()]
 
 # # We will catch NLU uncertainty here and override their function.
 # class ActionDefaultAskAffirmation(Action):

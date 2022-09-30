@@ -71,6 +71,9 @@ responses:
   utter_major:
   - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
 
+  utter_did_not_understand:
+  - text: sorry I don't understand
+
   # utter_out_of_scope:
   # - text: Sorry, I can't handle that request.
   #
@@ -192,8 +195,11 @@ actions:
   - utter_age
   - utter_major
   - action_check_numQ
+  - action_default_ask_affirmation
+  - utter_did_not_understand
+  - after_handle_did_not_understand_answer
+  - action_test
   # - action_default_fallback
-  # - action_default_ask_affirmation
   # - utter_out_of_scope
   # - utter_ask_rephrase
   # - utter_default
