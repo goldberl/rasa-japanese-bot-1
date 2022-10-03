@@ -1,0 +1,210 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - inform_name
+  - inform_phone_num
+  - inform_hometown
+  - inform_school_year
+  - inform_age
+  - inform_major
+  - ask_name
+  - ask_phone_num
+  - ask_hometown
+  - ask_school_year
+  - ask_age
+  - ask_major
+
+responses:
+  utter_greet:
+  - text: "こんにちは! はじめまして、ラサです。"
+
+  utter_goodbye:
+  - text: "ではまたね。"
+
+  utter_iamabot:
+  - text: "ラサのボートです."
+
+  utter_ask_name:
+  - text: おなまえは？
+
+  utter_ask_phone_num:
+  - text: でんわばんごはなんですか。
+
+  utter_ask_hometown:
+  - text: ごしゅっしんはどこですか。
+
+  utter_ask_school_year:
+  - text: なんねんせいですか。
+
+  utter_ask_age:
+  - text: なんさいですか。
+
+  utter_ask_major:
+  - text: せんこうは？
+
+  utter_activity_slots:
+  - text: なまえは{name}さんです。ごしゅっしんは{hometown}で、
+          {age}さいです。そして{school_year}ねんせいで、
+          せんこうは{major}です。よろしくおねがいします。٩(◕‿◕)۶
+
+  utter_askme:
+  - text: では{name}さん、しつもんをきいてください。
+
+  utter_name:
+  - text: はじめまして、ラサです。よろしくおねがいします。　(*・ω・)ﾉ
+
+  utter_phone_num:
+  - text: 000-000-0000 です。(o˘◡˘o)
+
+  utter_hometown:
+  - text: カーライルです。ちいさいまちですね。(´･ᴗ･ `)
+
+  utter_school_year:
+  - text: いちねんせいです！(.❛ ᴗ ❛.)
+
+  utter_age:
+  - text: いま、いっさいです。(´･ᴗ･ `)
+
+  utter_major:
+  - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
+
+  utter_did_not_understand:
+  - text: sorry I don't understand
+
+  # utter_out_of_scope:
+  # - text: Sorry, that is out of my scope to understand
+  #
+  # utter_ask_rephrase:
+  # - text: Please rephrase?
+  #
+  # utter_default:
+  # - text: I'm sorry, I can not help you.
+
+entities:
+- name
+- phone_num
+- hometown
+- school_year
+- age
+- major
+
+slots:
+  name:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: name
+      conditions:
+        - active_loop: activity_form
+          requested_slot: name
+
+  phone_num:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: phone_num
+      conditions:
+        - active_loop: activity_form
+          requested_slot: phone_num
+
+  hometown:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: hometown
+      conditions:
+        - active_loop: activity_form
+          requested_slot: hometown
+
+  school_year:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: school_year
+      conditions:
+        - active_loop: activity_form
+          requested_slot: school_year
+
+  age:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: age
+      conditions:
+        - active_loop: activity_form
+          requested_slot: age
+
+  major:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: major
+      conditions:
+        - active_loop: activity_form
+          requested_slot: major
+
+  quesAsked:
+    type: float
+    influence_conversation: true
+    min_value: 0
+    max_value: 6
+    mappings:
+    - type: custom
+    # if this line is in code, custom action runs twice
+    # action: action_check_numQ
+  #
+  # story:
+  #   type: any
+  #   mappings:
+  #   - type: custom
+
+forms:
+  activity_form:
+    required_slots:
+      - name
+      - phone_num
+      - hometown
+      - school_year
+      - age
+      - major
+
+actions:
+  - utter_greet
+  - utter_goodbye
+  - utter_iamabot
+  - utter_ask_name
+  - utter_ask_hometown
+  - utter_ask_school_year
+  - utter_ask_age
+  - utter_ask_major
+  - utter_activity_slots
+  - utter_askme
+  - utter_name
+  - utter_phone_num
+  - utter_hometown
+  - utter_school_year
+  - utter_age
+  - utter_major
+  - action_check_numQ
+  - action_default_ask_affirmation
+  - utter_did_not_understand
+  - after_handle_did_not_understand_answer
+  - action_test
+  - action_default_fallback
+  - utter_out_of_scope
+  - utter_ask_rephrase
+  - utter_default
+  # - after_handle_no_trip_location
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
