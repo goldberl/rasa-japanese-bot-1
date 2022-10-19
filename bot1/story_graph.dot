@@ -1,0 +1,31 @@
+digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class=active, fontsize=12, label=utter_greet];
+2 [class=active, fontsize=12, label=utter_ask_name];
+3 [class=active, fontsize=12, label=utter_askme_name];
+4 [class="", fontsize=12, label=utter_name];
+5 [class="", fontsize=12, label=utter_ask_phone_num];
+6 [class="", fontsize=12, label=utter_askme_phone_num];
+"-3" [class=ellipsis, label="..."];
+10 [class="dashed active", fontsize=12, label=utter_ask_rephrase];
+11 [class="intent active", fillcolor=lightblue, label="/greet", shape=rect, style=filled];
+12 [class="intent active", fillcolor=lightblue, label="/inform_name", shape=rect, style=filled];
+13 [class=intent, fillcolor=lightblue, label="/ask_name", shape=rect, style=filled];
+14 [class="intent active", fillcolor=lightblue, label="/nlu_fallback", shape=rect, style=filled];
+15 [class=intent, fillcolor=lightblue, label="/inform_phone_num", shape=rect, style=filled];
+0 -> "-1"  [class="", key=NONE, label=""];
+0 -> 11  [class=active, key=0];
+1 -> 2  [class=active, key=NONE, label=""];
+2 -> 12  [class=active, key=0];
+3 -> 13  [class="", key=0];
+3 -> 14  [class=active, key=0];
+4 -> 5  [class="", key=NONE, label=""];
+5 -> 15  [class="", key=0];
+6 -> "-3"  [class="", key=NONE, label=""];
+11 -> 1  [class=active, key=0];
+12 -> 3  [class=active, key=0];
+13 -> 4  [class="", key=0];
+14 -> 10  [class=active, key=0];
+15 -> 6  [class="", key=0];
+}
