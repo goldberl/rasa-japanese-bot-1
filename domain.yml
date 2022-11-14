@@ -1,0 +1,221 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - inform_name
+  - inform_phone_num
+  - inform_hometown
+  - inform_school_year
+  - inform_age
+  - inform_major
+  - ask_name
+  - ask_phone_num
+  - ask_hometown
+  - ask_school_year
+  - ask_age
+  - ask_major
+  - userQ
+
+responses:
+  utter_greet:
+  - text: "こんにちは! はじめまして、 わたしはにほんごのチャットボットです。(。・ω・)ノ"
+
+  utter_goodbye:
+  - text: "ではまたね。(・ω・)ノ"
+    image: "https://media.tenor.com/inhg61kTkrwAAAAi/cute.gif"
+
+  utter_iamabot:
+  - text: "ラサのボートです."
+    image: "https://media.tenor.com/arlZrN0YovkAAAAC/robot-smile.gif"
+
+  utter_ask_name:
+  - text: おなまえは？
+
+  utter_ask_phone_num:
+  - text: つぎのしつもん：でんわばんごはなんですか。
+
+  utter_ask_hometown:
+  - text: つぎのしつもん：ごしゅっしんはどこですか。
+
+  utter_ask_school_year:
+  - text: つぎのしつもん：なんねんせいですか。
+
+  utter_ask_age:
+  - text: つぎのしつもん：なんさいですか。
+
+  utter_ask_major:
+  - text: さいごのしつもん：せんこうは？
+
+  utter_activity_slots:
+  - text: きょうはたくさんはなしましたね！
+             なまえは{name}さんです。
+             ごしゅっしんは{hometown}で、{age}さいです。
+             そして{school_year}ねんせいで、せんこうは{major}です。
+
+  utter_askme_name:
+  - text: なまえは{name}さんですか？いいなまえですね。
+             よろしくおねがいします。٩(◕‿◕)۶
+             では、わたしの name をきいてください。
+    image: "https://media.tenor.com/V76AdqPJMQcAAAAi/okay-nod.gif"
+
+  utter_askme_phone_num:
+  - text: でんわばんごは{phone_num}？そうですか。
+             では、わたしの phone number をきいてください。
+    image: "https://media.tenor.com/j_XffFNH-8gAAAAi/phone.gif"
+              
+  utter_askme_hometown:
+  - text: わかりました。{name}さんのしゅっしんは{hometown}ですね。
+             では、わたしの hometown をきいてください。
+    image: "https://media.tenor.com/iRn9h2dTMhcAAAAi/mochi-mochi-peach-cat-cat.gif" 
+
+  utter_askme_school_year:
+  - text: だいがくの{school_year}ねんせいですか？それはたのしいです！ 
+             では、わたしの school year をきいてください。
+    image: "https://media.tenor.com/v-Xr3cXdHzwAAAAC/100.gif"
+
+  utter_askme_age:
+  - text: そうか、{name}さんは{age}さいですね。  
+             では、わたしの age をきいてください。
+
+  utter_askme_major:
+  - text: わかりました！{major}はとてもおもしろいですね。
+             では、わたしの major をきいてください。
+
+  utter_name:
+  - text: はじめまして、ラサです。よろしくおねがいします。(*・ω・)ﾉ
+    image: "https://media.tenor.com/lUFliafCu_MAAAAC/hello.gif"
+
+  utter_phone_num:
+  - text: 000-000-0000 です。(o˘◡˘o)
+
+  utter_hometown:
+  - text: カーライルです。ちいさいまちですね。しっていますか？
+            「いっせい」においしいボバティーがあります。よかったら、みてください！(´･ᴗ･ `)
+    image: "https://media.tenor.com/YUF4morhOVcAAAAC/peach-cat-boba-tea.gif"
+
+  utter_school_year:
+  - text: いちねんせいです！(.❛ ᴗ ❛.)
+
+  utter_age:
+  - text: いま、いっさいです。(´･ᴗ･ `)
+    image: "https://media.tenor.com/RXzUeIltPNwAAAAi/mochi-cat.gif"
+
+  utter_major:
+  - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
+    image: "https://media.tenor.com/rq4fpzxyW_cAAAAd/mochi-glasses.gif"
+  
+#  utter_did_not_understand:
+#  - text: sorry I don't understand
+
+# utter_out_of_scope:
+# - text: Sorry, that is out of my scope to understand
+#
+  utter_ask_rephrase:
+  - text: Sorry, I do not understand your answer. Can you please rephrase? [´・ω・`]  
+#
+  utter_default:
+  - text: This is the utter_default, please rephrase?
+    image: "https://media.tenor.com/-caxkmc867EAAAAC/mochi-cat.gif"
+
+entities:
+- name
+- phone_num
+- hometown
+- school_year
+- age
+- major
+
+slots:
+  name:
+    type: text
+    initial_value: null
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: name
+
+
+  phone_num:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: phone_num
+
+  hometown:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: hometown
+
+  school_year:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: school_year
+
+  age:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: age
+
+  major:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: major
+
+  quesAsked:
+    type: float
+    influence_conversation: false
+    mappings:
+    - type: custom
+
+  story:
+    type: text
+    influence_conversation: false
+    initial_value: conversation
+    mappings:
+    - type: custom
+
+
+actions:
+  - utter_greet
+  - utter_goodbye
+  - utter_iamabot
+  - utter_ask_name
+  - utter_ask_hometown
+  - utter_ask_school_year
+  - utter_ask_age
+  - utter_ask_major
+  - utter_activity_slots
+  - utter_name
+  - utter_phone_num
+  - utter_hometown
+  - utter_school_year
+  - utter_age
+  - utter_major
+  - action_check_numQ
+  - action_follow_up_new_story
+  - utter_ask_rephrase
+  - action_restart
+  - action_test
+  - action_default_ask_affirmation
+#  - action_default_fallback
+  - after_handle_did_not_understand_answer
+  - utter_out_of_scope
+  - utter_default
+#  - utter_did_not_understand
+#  - action_default_fallback
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
