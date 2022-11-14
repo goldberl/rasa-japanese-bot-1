@@ -1,0 +1,145 @@
+version: "3.1"
+
+stories:
+
+- story: ask user questions & user asks bot questions
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - action: utter_ask_name
+  - intent: inform_name
+    entities:
+      - name
+  - action: utter_askme_name
+  - intent: ask_name
+  - action: utter_name
+  - action: utter_ask_hometown
+  - intent: inform_hometown
+    entities:
+      - hometown
+  - action: utter_askme_hometown
+  - intent: ask_hometown
+  - action: utter_hometown
+  - action: utter_ask_school_year
+  - intent: inform_school_year
+    entities:
+      - school_year
+  - action: utter_askme_school_year
+  - intent: ask_school_year
+  - action: utter_school_year
+  - action: utter_ask_age
+  - intent: inform_age
+    entities:
+      - age
+  - action: utter_askme_age
+  - intent: ask_age
+  - action: utter_age
+  - action: utter_ask_major
+  - intent: inform_major
+    entities:
+      - major
+  - action: utter_askme_major
+  - intent: ask_major
+  - action: utter_major
+  - action: utter_goodbye
+
+- story: ask user questions & user asks bot questions w/o name
+  steps:
+  - intent: ask_name
+  - action: utter_name
+  - action: utter_ask_hometown
+  - intent: inform_hometown
+    entities:
+      - hometown
+  - action: utter_askme_hometown
+  - intent: ask_hometown
+  - action: utter_hometown
+  - action: utter_ask_school_year
+  - intent: inform_school_year
+    entities:
+      - school_year
+  - action: utter_askme_school_year
+  - intent: ask_school_year
+  - action: utter_school_year
+  - action: utter_ask_age
+  - intent: inform_age
+    entities:
+      - age
+  - action: utter_askme_age
+  - intent: ask_age
+  - action: utter_age
+  - action: utter_ask_major
+  - intent: inform_major
+    entities:
+      - major
+  - action: utter_askme_major
+  - intent: ask_major
+  - action: utter_major
+  - action: utter_goodbye
+
+- story: ask user questions & user asks bot questions w/o hometown
+  steps:
+  - intent: ask_hometown
+  - action: utter_hometown
+  - action: utter_ask_school_year
+  - intent: inform_school_year
+    entities:
+      - school_year
+  - action: utter_askme_school_year
+  - intent: ask_school_year
+  - action: utter_school_year
+  - action: utter_ask_age
+  - intent: inform_age
+    entities:
+      - age
+  - action: utter_askme_age
+  - intent: ask_age
+  - action: utter_age
+  - action: utter_ask_major
+  - intent: inform_major
+    entities:
+      - major
+  - action: utter_askme_major
+  - intent: ask_major
+  - action: utter_major
+  - action: utter_goodbye
+
+- story: ask user questions & user asks bot questions w/o school_year
+  steps:
+  - intent: ask_school_year
+  - action: utter_school_year
+  - action: utter_ask_age
+  - intent: inform_age
+    entities:
+      - age
+  - action: utter_askme_age
+  - intent: ask_age
+  - action: utter_age
+  - action: utter_ask_major
+  - intent: inform_major
+    entities:
+      - major
+  - action: utter_askme_major
+  - intent: ask_major
+  - action: utter_major
+  - action: utter_goodbye
+
+- story: ask user questions & user asks bot questions w/o age
+  steps:
+  - intent: ask_age
+  - action: utter_age
+  - action: utter_ask_major
+  - intent: inform_major
+    entities:
+      - major
+  - action: utter_askme_major
+  - intent: ask_major
+  - action: utter_major
+  - action: utter_goodbye
+
+- story: ask user questions & user asks bot questions w/o major
+  steps:
+  - intent: ask_major
+  - action: utter_major
+  - action: utter_goodbye
+
