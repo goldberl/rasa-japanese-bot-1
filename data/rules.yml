@@ -11,10 +11,10 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: out-of-scope
+- rule: send utter_default to action_default_ask_affirmation
   steps:
-  - intent: out_of_scope
-  - action: utter_out_of_scope
+  - intent: utter_default
+  - action: action_default_ask_affirmation
 
 # simple fallback:
 - rule: Single stage fallback | ask user to choose what they meant
@@ -22,11 +22,11 @@ rules:
   - intent: nlu_fallback
   - action: action_default_ask_affirmation
 
-- rule: Single stage fallback | call default fallback if user is not ok
-  steps:
-  - action: action_default_ask_affirmation
-  - intent: out_of_scope
-  - action: action_default_fallback
+#- rule: Single stage fallback | call default fallback if user is not ok
+#  steps:
+#  - action: action_default_ask_affirmation
+#  - intent: out_of_scope
+#  - action: action_default_fallback
 
 
 # - rule: Implementation of the Two-Stage-Fallback

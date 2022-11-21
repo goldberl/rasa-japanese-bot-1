@@ -66,7 +66,7 @@ responses:
     image: "https://media.tenor.com/j_XffFNH-8gAAAAi/phone.gif"
               
   utter_askme_hometown:
-  - text: わかりました。{name}さんのしゅっしんは{hometown}ですね。
+  - text: わかりました。しゅっしんは{hometown}ですね。
              では、わたしの hometown をきいてください。
     image: "https://media.tenor.com/iRn9h2dTMhcAAAAi/mochi-mochi-peach-cat-cat.gif" 
 
@@ -76,8 +76,9 @@ responses:
     image: "https://media.tenor.com/v-Xr3cXdHzwAAAAC/100.gif"
 
   utter_askme_age:
-  - text: そうか、{name}さんは{age}さいですね。  
+  - text: そうか、{age}さいですね。  
              では、わたしの age をきいてください。
+    image: "https://media.tenor.com/V76AdqPJMQcAAAAi/okay-nod.gif"
 
   utter_askme_major:
   - text: わかりました！{major}はとてもおもしろいですね。
@@ -105,19 +106,10 @@ responses:
   utter_major:
   - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
     image: "https://media.tenor.com/rq4fpzxyW_cAAAAd/mochi-glasses.gif"
-  
-#  utter_did_not_understand:
-#  - text: sorry I don't understand
-
-# utter_out_of_scope:
-# - text: Sorry, that is out of my scope to understand
-#
-  utter_ask_rephrase:
-  - text: Sorry, I do not understand your answer. Can you please rephrase? [´・ω・`]  
-#
-  utter_default:
-  - text: This is the utter_default, please rephrase?
-    image: "https://media.tenor.com/-caxkmc867EAAAAC/mochi-cat.gif"
+ 
+#  utter_default:
+#  - text: This is the utter_default, please rephrase?
+#    image: "https://media.tenor.com/-caxkmc867EAAAAC/mochi-cat.gif"
 
 entities:
 - name
@@ -208,12 +200,9 @@ actions:
   - action_restart
   - action_test
   - action_default_ask_affirmation
-#  - action_default_fallback
   - after_handle_did_not_understand_answer
   - utter_out_of_scope
   - utter_default
-#  - utter_did_not_understand
-#  - action_default_fallback
 
 
 session_config:

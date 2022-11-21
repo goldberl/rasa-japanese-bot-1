@@ -69,15 +69,15 @@ class ActionDefaultAskAffirmation(Action):
 
 	# Comments on user's last input
         if lastBotMessage == "おなまえは？":
-            dispatcher.utter_message('Nice to meet you ' + lastOutput)
+            dispatcher.utter_message('なまえは' + lastOutput + 'さんですか？いいなまえですね。よろしくおねがいします。٩(◕‿◕)۶')
         elif lastBotMessage == "つぎのしつもん：ごしゅっしんはどこですか。":
-            dispatcher.utter_message('Your hometown is ' + lastOutput)
+            dispatcher.utter_message('わかりました。しゅっしんは' + lastOutput + 'ですね。')
         elif lastBotMessage == "つぎのしつもん：なんねんせいですか。":
-            dispatcher.utter_message('Your schoolyear is ' + lastOutput)
+            dispatcher.utter_message('だいがくの' + lastOutput + 'ねんせいですか？それはたのしいです。')
         elif lastBotMessage == "つぎのしつもん：なんさいですか。":
-            dispatcher.utter_message('Your age is ' + lastOutput)
+            dispatcher.utter_message('そうか、' + lastOutput + 'さいですね。')
         elif lastBotMessage == "さいごのしつもん：せんこうは？":
-            dispatcher.utter_message('Your major is ' + lastOutput)
+            dispatcher.utter_message('わかりました！せんこうは' + lastOutput + '。とてもおもしろいですね。')
         else:
             dispatcher.utter_message('This text should not appear')
         
@@ -91,7 +91,7 @@ class AfterHandleDidNotUnderstandAnswer(Action):
     def run(self, dispatcher, tracker, domain):
         print("in AfterHandleDidNotUnderstandAnswer")
         
-        dispatcher.utter_message('We bonked at the beginning, so do not have any valid slots I can use to make bot look smart.  Ohe well.  Let us just resume the story with student asking bot a question.')
+        # dispatcher.utter_message('We bonked at the beginning, so do not have any valid slots I can use to make bot look smart.  Ohe well.  Let us just resume the story with student asking bot a question.')
 
         # Gets last output of bot (based on dispatcher.utter_message from ActionDefaultAskAffirmation)
         for event in tracker.events:
@@ -103,16 +103,16 @@ class AfterHandleDidNotUnderstandAnswer(Action):
         # The lastBotMessage is coming from the ActionDefaultAskAffirmation
         # and these if/elif statements are checking what the bot last said
         # and using substrings of the last message to identify what the bot says next
-        if "Nice to meet you" in lastBotMessage:
-            dispatcher.utter_message('Now ask me my name')
-        elif "hometown" in lastBotMessage:
-            dispatcher.utter_message('Now ask me my hometown')
-        elif "schoolyear" in lastBotMessage:
-            dispatcher.utter_message('Now ask me my schoolyear')
-        elif "age" in lastBotMessage:
-            dispatcher.utter_message('Now ask me my age')
-        elif "major" in lastBotMessage:
-            dispatcher.utter_message('Now ask me my major')
+        if "なまえは" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの name をきいてください。')
+        elif "しゅっしんは" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの hometown をきいてください。')
+        elif "ねんせい" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの school year をきいてください。')
+        elif "さい" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの age をきいてください。')
+        elif "せんこう" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの major をきいてください。')
         else:
             dispatcher.utter_message('This text should not appear')
         
