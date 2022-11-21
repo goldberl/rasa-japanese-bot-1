@@ -1,4 +1,4 @@
-# Japanese Chatbot for Language Learners using [Rasa](https://rasa.com/)
+## Japanese Chatbot for Language Learners using [Rasa](https://rasa.com/)
 
 #### This is a simple chatbot aimed to help beginner Japanese language learners practice a basic conversation. This bot will ask the user about themselves and also prompt them to ask questions back.
 
@@ -8,4 +8,18 @@
 * [Ubuntu](https://learning.rasa.com/installation/ubuntu/)
 
 #### Running The Bot In The Shell
-To run the bot in the shell, change directory to the folder that the project is in and type the command `rasa shell`.
+To run the bot in the shell, change directory to the folder that the project is in and type the command `rasa shell` or `rasa shell --debug` and simultaneously in a separate shell window, run `rasa run actions` .
+###### `rasa shell`
+![image](https://user-images.githubusercontent.com/76408777/203106974-c793804d-16c6-4885-85c7-6ebce5b9918d.png)
+
+When the bot loads, type `こんにちは` to start the conversation!
+![image](https://user-images.githubusercontent.com/76408777/203107584-bbffe89b-5f56-445b-93ce-63207129589a.png)
+
+###### `rasa run actions`
+![Screenshot from 2022-11-21 11-23-22](https://user-images.githubusercontent.com/76408777/203106452-e9c4b030-0823-4756-93b3-5228e968614f.png)
+
+#### Stopping The Bot In The Shell
+Type `/stop` to exit the bot in the shell.
+
+![image](https://user-images.githubusercontent.com/76408777/203108052-0e62ac4b-940b-4fea-8912-a23af19e6367.png)
+
