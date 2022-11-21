@@ -79,7 +79,7 @@ class ActionDefaultAskAffirmation(Action):
         elif lastBotMessage == "さいごのしつもん：せんこうは？":
             dispatcher.utter_message('わかりました！せんこうは' + lastOutput + '。とてもおもしろいですね。')
         else:
-            dispatcher.utter_message('This text should not appear')
+            dispatcher.utter_message('ActionDefaultAskAffirmation - This text should not appear. Please type こんにちは to restart the conversation.')
         
         return [FollowupAction("after_handle_did_not_understand_answer")]	
         
@@ -114,7 +114,7 @@ class AfterHandleDidNotUnderstandAnswer(Action):
         elif "せんこう" in lastBotMessage:
             dispatcher.utter_message('では、わたしの major をきいてください。')
         else:
-            dispatcher.utter_message('This text should not appear')
+            dispatcher.utter_message('AfterHandleDidNotUnderstandAnswer - This text should not appear. Please type こんにちは to restart the conversation.')
         
         
         return [Restarted()]       
