@@ -7,6 +7,9 @@
 * [MacOS](https://learning.rasa.com/installation/mac/)
 * [Ubuntu](https://learning.rasa.com/installation/ubuntu/)
 
+#### Install the Spacy Model
+Run `python -m spacy download ja_core_news_lg` to download the [Spacy Model](https://spacy.io/models/ja#ja_core_news_lg) that the bot uses.
+
 #### Running The Bot In The Shell
 To run the bot in the shell, change directory to the folder that the project is in and type the command `rasa shell` or `rasa shell --debug` and simultaneously in a separate shell window, run `rasa run actions` .
 ###### `rasa shell`
