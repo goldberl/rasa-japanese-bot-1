@@ -15,11 +15,11 @@ To run the bot in the shell, change directory to the folder that the project is 
 ###### `rasa shell`
 ![image](https://user-images.githubusercontent.com/76408777/203106974-c793804d-16c6-4885-85c7-6ebce5b9918d.png)
 
-When the bot loads, type `こんにちは` to start the conversation!
-![image](https://user-images.githubusercontent.com/76408777/203107584-bbffe89b-5f56-445b-93ce-63207129589a.png)
-
 ###### `rasa run actions`
 ![Screenshot from 2022-11-21 11-23-22](https://user-images.githubusercontent.com/76408777/203106452-e9c4b030-0823-4756-93b3-5228e968614f.png)
+
+When the bot loads, type `こんにちは` to start the conversation!
+![image](https://user-images.githubusercontent.com/76408777/203107584-bbffe89b-5f56-445b-93ce-63207129589a.png)
 
 #### Stopping The Bot In The Shell
 Type `/stop` to exit the bot in the shell.
