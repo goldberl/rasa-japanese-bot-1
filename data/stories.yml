@@ -124,6 +124,23 @@ stories:
   - action: utter_major
   - action: utter_goodbye
 
+- story: ask user questions & bot doesn't detect schoolyear question
+  steps:
+  - intent: inform_age
+    entities:
+      - age
+  - action: utter_askme_age
+  - intent: ask_age
+  - action: utter_age
+  - action: utter_ask_major
+  - intent: inform_major
+    entities:
+      - major
+  - action: utter_askme_major
+  - intent: ask_major
+  - action: utter_major
+  - action: utter_goodbye
+
 - story: ask user questions & user asks bot questions w/o age
   steps:
   - intent: ask_age

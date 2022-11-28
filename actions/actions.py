@@ -78,6 +78,11 @@ class ActionDefaultAskAffirmation(Action):
             dispatcher.utter_message('そうか、' + lastOutput + 'さいですね。')
         elif lastBotMessage == "さいごのしつもん：せんこうは？":
             dispatcher.utter_message('わかりました！せんこうは' + lastOutput + '。とてもおもしろいですね。')
+        # Sometimes bot has confidence level below .5 when user asks what the school year is.
+        # To remedy this, we are adding this 'elif' statement for the bot to respond to however
+        # the user asks about the bot school year.
+        elif "では、わたしの school year をきいてください。" in lastBotMessage:
+            dispatcher.utter_message('いちねんせいです！(.❛ ᴗ ❛.)')
         else:
             dispatcher.utter_message('ActionDefaultAskAffirmation - This text should not appear. Please type こんにちは to restart the conversation.')
         
@@ -107,6 +112,11 @@ class AfterHandleDidNotUnderstandAnswer(Action):
             dispatcher.utter_message('では、わたしの name をきいてください。')
         elif "しゅっしんは" in lastBotMessage:
             dispatcher.utter_message('では、わたしの hometown をきいてください。')
+        # Sometimes bot has confidence level below .5 when user asks what the school year is.
+        # To remedy this, we are adding this 'elif' statement for the bot to respond to however
+        # the user asks about the bot school year. The next question for the bot to ask is AGE.
+        elif "いちねんせいです！(.❛ ᴗ ❛.)" in lastBotMessage:
+            dispatcher.utter_message('つぎのしつもん：なんさいですか。')
         elif "ねんせい" in lastBotMessage:
             dispatcher.utter_message('では、わたしの school year をきいてください。')
         elif "さい" in lastBotMessage:
