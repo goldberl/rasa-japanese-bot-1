@@ -95,6 +95,8 @@ nlu:
   examples: |
     - [アメリカ](hometown)です。
     - [ちゅうごく](hometown)です
+    - [にほん](hometown)です
+    - [日本](hometown)です
     - [カリフォルニア](hometown)
     - [中国](hometown)
     - [Maple Glen](hometown)です
