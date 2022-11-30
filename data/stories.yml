@@ -159,4 +159,3 @@ stories:
   - intent: ask_major
   - action: utter_major
   - action: utter_goodbye
-

@@ -1,5 +1,4 @@
 version: "3.1"
-
 nlu:
 - intent: greet
   examples: |
@@ -19,7 +18,6 @@ nlu:
     - はじめまして。
     - おはよう。
     - やあ。
-
 - intent: goodbye
   examples: |
     - さよなら
@@ -42,12 +40,10 @@ nlu:
     - またね。
     - ではまた。
     - しつれいします。
-
 - intent: bot_challenge
   examples: |
     - だれですか。
     - ひとですか。
-
 - intent: inform_name
   examples: |
     - わたしは[リア](name)です。
@@ -82,7 +78,6 @@ nlu:
     - [ティム](name)
     - [ベロニカ](name)
     - [ウィリアム](name)
-
 - intent: inform_phone_num
   examples: |
     - [267-559-7259](phone_num)です
@@ -90,7 +85,6 @@ nlu:
     - [2222222222](phone_num)
     - [597-849-5126](phone_num)
     - [4479985621](phone_num)
-
 - intent: inform_hometown
   examples: |
     - [アメリカ](hometown)です。
@@ -111,7 +105,6 @@ nlu:
     - [カナダ](hometown)
     - [かんこく](hometown)
     - [ロシア](hometown)
-
 - intent: inform_school_year
   examples: |
     - [いち](school_year)ねんせいです。
@@ -126,7 +119,6 @@ nlu:
     - わたしは[二](school_year)年生です。
     - わたしは[三](school_year)年生です。
     - わたしは[四](school_year)年生です。
-
 - intent: inform_age
   examples: |
     - [18](age)さい
@@ -138,11 +130,9 @@ nlu:
     - [じゅうきゅう](age)です。
     - わたしは[はたち](age)です。
     - わたしは[にじゅう](age)さいです。
-    - わたしは[にじゅう](age)さいです。
     - [五](age)さい
     - [十八](age)です。
     - [二十](age)です
-
 - intent: inform_major
   examples: |
     - せんこうは[にほんご](major)です。
@@ -163,8 +153,6 @@ nlu:
     - [ビジネス](major)です
     - [ぶんがく](major)です。
     - [文学](major)
-    - [れきし] (major)です。
-    - [歴史](major)です
     - [せいぶつがく](major)。
     - [生物学](major)です。
     - [ぶつりがく](major)。
@@ -172,8 +160,11 @@ nlu:
     - [スペイン語](major) です。
     - [ドイツ語](major)です。
     - [フランス語](major)です
-    - [ロシア語](major) 
-
+    - [ロシア語](major)
+    - [れきし] (major)です。
+    - [れきし] (major)です
+    - [歴史](major)です
+    - [れきし] (major)
 - intent: ask_name
   examples: |
     - おなまえは
@@ -184,7 +175,6 @@ nlu:
     - なまえはなんですか。
     - お名前は。
     - 名前はなんですか。
-
 - intent: ask_phone_num
   examples: |
     - でんわばんごは
@@ -195,7 +185,6 @@ nlu:
     - でんわばんごはなんですか。
     - 電話番号は。
     - 電話番号はなんですか。
-
 - intent: ask_hometown
   examples: |
     - ごしゅっしんは
@@ -206,19 +195,16 @@ nlu:
     - ごしゅっしんはどこですか。
     - 出身は。
     - 出身はどこですか。
-
 - intent: ask_school_year
   examples: |
     - なんねんせい
     - なんねんせいですか
     - 何年生
     - 何年生ですか
-    - なんねんせい
     - なんねんせい。
     - なんねんせいですか。
     - 何年生。
     - 何年生ですか。
-
 - intent: ask_age
   examples: |
     - なんさい
@@ -229,7 +215,6 @@ nlu:
     - なんさいですか。
     - 何歳。
     - 何歳ですか。
-
 - intent: ask_major
   examples: |
     - せんこうは
