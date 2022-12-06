@@ -52,7 +52,7 @@ class ActionDefaultAskAffirmation(Action):
         elif "では、わたしの school year をきいてください。" in lastBotMessage:
             dispatcher.utter_message('いちねんせいです！(.❛ ᴗ ❛.)')
         else:
-            dispatcher.utter_message('ActionDefaultAskAffirmation - This text should not appear. Please type こんにちは to restart the conversation.')
+            dispatcher.utter_message("すみません、わかりません。 Sorry, I don't quite understand (,,>﹏<,,).")
         
         return [FollowupAction("after_handle_did_not_understand_answer")]	
 
@@ -94,7 +94,7 @@ class AfterHandleDidNotUnderstandAnswer(Action):
         elif "せんこう" in lastBotMessage:
             dispatcher.utter_message('では、わたしの major をきいてください。')
         else:
-            dispatcher.utter_message('AfterHandleDidNotUnderstandAnswer - This text should not appear. Please type こんにちは to restart the conversation.')
+            dispatcher.utter_message('Please try the following options (1) Type こんにちは to restart the conversation OR (2) Type the last question you asked the bot to start from there.')
         
         
         return [Restarted()]       

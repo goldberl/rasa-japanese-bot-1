@@ -5,6 +5,7 @@ stories:
 - story: ask user questions & user asks bot questions
   steps:
   - intent: greet
+  - action: utter_hello
   - action: utter_greet
   - action: utter_ask_name
   - intent: inform_name
@@ -41,6 +42,7 @@ stories:
   - action: utter_askme_major
   - intent: ask_major
   - action: utter_major
+  - action: utter_thanks_for_talking
   - action: utter_goodbye
 
 - story: ask user questions & user asks bot questions w/o name
@@ -75,6 +77,7 @@ stories:
   - action: utter_askme_major
   - intent: ask_major
   - action: utter_major
+  - action: utter_thanks_for_talking
   - action: utter_goodbye
 
 - story: ask user questions & user asks bot questions w/o hometown
@@ -102,6 +105,7 @@ stories:
   - action: utter_askme_major
   - intent: ask_major
   - action: utter_major
+  - action: utter_thanks_for_talking
   - action: utter_goodbye
 
 - story: ask user questions & user asks bot questions w/o school_year
@@ -122,6 +126,7 @@ stories:
   - action: utter_askme_major
   - intent: ask_major
   - action: utter_major
+  - action: utter_thanks_for_talking
   - action: utter_goodbye
 
 - story: ask user questions & bot doesn't detect schoolyear question
@@ -139,6 +144,7 @@ stories:
   - action: utter_askme_major
   - intent: ask_major
   - action: utter_major
+  - action: utter_thanks_for_talking
   - action: utter_goodbye
 
 - story: ask user questions & user asks bot questions w/o age
@@ -152,10 +158,12 @@ stories:
   - action: utter_askme_major
   - intent: ask_major
   - action: utter_major
+  - action: utter_thanks_for_talking
   - action: utter_goodbye
 
 - story: ask user questions & user asks bot questions w/o major
   steps:
   - intent: ask_major
   - action: utter_major
+  - action: utter_thanks_for_talking
   - action: utter_goodbye

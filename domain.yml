@@ -17,8 +17,10 @@ intents:
 - inform_school_year
 - userQ
 responses:
+  utter_hello:
+  - text: こんにちは! 
   utter_greet:
-  - text: こんにちは! はじめまして、 わたしはにほんごのチャットボットです。(。・ω・)ノ
+  - text: はじめまして、 わたしはにほんごのチャットボットです。(。・ω・)ノ
   utter_goodbye:
   - text: ではまたね。(・ω・)ノ
     image: https://media.tenor.com/inhg61kTkrwAAAAi/cute.gif
@@ -39,6 +41,8 @@ responses:
   - text: さいごのしつもん：せんこうは？
   utter_activity_slots:
   - text: きょうはたくさんはなしましたね！ なまえは{name}さんです。 ごしゅっしんは{hometown}で、{age}さいです。 そして{school_year}ねんせいで、せんこうは{major}です。
+  utter_thanks_for_talking:
+  - text: はなしてくれてありがとうございました！
   utter_askme_name:
   - text: なまえは{name}さんですか？いいなまえですね。 よろしくおねがいします。٩(◕‿◕)۶ では、わたしの name をきいてください。
     image: https://media.tenor.com/V76AdqPJMQcAAAAi/okay-nod.gif
@@ -154,6 +158,8 @@ actions:
 - utter_out_of_scope
 - utter_phone_num
 - utter_school_year
+- utter_thanks_for_talking
+- utter_hello
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
