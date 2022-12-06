@@ -157,14 +157,27 @@ nlu:
     - [生物学](major)です。
     - [ぶつりがく](major)。
     - [物理学](major)
-    - [スペイン語](major) です。
+    - [スペイン語](major)です。
     - [ドイツ語](major)です。
     - [フランス語](major)です
     - [ロシア語](major)
-    - [れきし] (major)です。
-    - [れきし] (major)です
+    - [れきし](major)です。
+    - [れきし](major)です
     - [歴史](major)です
-    - [れきし] (major)
+    - [れきし](major)
+    - [じんるいがく](major)
+    - [せいぶつがく](major) 
+    - [えいご](major)
+    - [びじゅつ](major)
+    - [びじゅつのれきし](major)
+    - [ちり](major)
+    - [かていか](major)
+    - [すうがく](major)
+    - [てつがく](major)
+    - [しんりがく](major)
+    - [しゅうきょう](major)
+    - [しゃかいがく](major)
+
 - intent: ask_name
   examples: |
     - おなまえは
