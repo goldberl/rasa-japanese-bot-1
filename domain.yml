@@ -21,6 +21,7 @@ responses:
   - text: こんにちは! 
   utter_greet:
   - text: はじめまして、 わたしはにほんごのチャットボットです。(。・ω・)ノ
+    image: https://media.tenor.com/ule8gL4rTIgAAAAC/peach-cat-mochi-mochi.gif
   utter_goodbye:
   - text: ではまたね。(・ω・)ノ
     image: https://media.tenor.com/inhg61kTkrwAAAAi/cute.gif
@@ -77,7 +78,7 @@ responses:
   - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
     image: https://media.tenor.com/rq4fpzxyW_cAAAAd/mochi-glasses.gif
   utter_default:
-  - text: Sorry, I didn't quite catch that. Please rephrase your answer (,,>﹏<,,)
+  - text: Sorry, I didn't quite catch that (,,>﹏<,,), please rephrase your answer.
 entities:
 - name
 - phone_num
