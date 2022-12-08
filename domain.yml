@@ -76,6 +76,8 @@ responses:
   utter_major:
   - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
     image: https://media.tenor.com/rq4fpzxyW_cAAAAd/mochi-glasses.gif
+  utter_default:
+  - text: Sorry, I didn't quite catch that. Please rephrase your answer (,,>﹏<,,)
 entities:
 - name
 - phone_num
@@ -148,7 +150,6 @@ actions:
 - utter_ask_rephrase
 - utter_ask_school_year
 - utter_askme_major
-- utter_default
 - utter_goodbye
 - utter_greet
 - utter_hometown
@@ -160,6 +161,7 @@ actions:
 - utter_school_year
 - utter_thanks_for_talking
 - utter_hello
+- utter_default
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
