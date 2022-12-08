@@ -43,7 +43,7 @@ responses:
   utter_activity_slots:
   - text: きょうはたくさんはなしましたね！ なまえは{name}さんです。 ごしゅっしんは{hometown}で、{age}さいです。 そして{school_year}ねんせいで、せんこうは{major}です。
   utter_thanks_for_talking:
-  - text: はなしてくれてありがとうございました！
+  - text: ありがとうございました！
   utter_askme_name:
   - text: なまえは{name}さんですか？いいなまえですね。 よろしくおねがいします。٩(◕‿◕)۶ では、わたしの name をきいてください。
     image: https://media.tenor.com/V76AdqPJMQcAAAAi/okay-nod.gif
@@ -67,7 +67,7 @@ responses:
   utter_phone_num:
   - text: 000-000-0000 です。(o˘◡˘o)
   utter_hometown:
-  - text: カーライルです。ちいさいまちですね。しっていますか？ 「いっせい」においしいボバティーがあります。よかったら、みてください！(´･ᴗ･ `)
+  - text: カーライルです。ちいさいまちですね。しっていますか？ 「いっせい」においしいボバティーがあります。よかったら、いってみてください！(´･ᴗ･ `)
     image: https://media.tenor.com/YUF4morhOVcAAAAC/peach-cat-boba-tea.gif
   utter_school_year:
   - text: いちねんせいです！(.❛ ᴗ ❛.)
