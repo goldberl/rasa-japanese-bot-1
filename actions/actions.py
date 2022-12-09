@@ -39,15 +39,15 @@ class ActionDefaultAskAffirmation(Action):
 
 	# Fallback for if user says "I don't know" to bot's question
         if 'inform_idk' in lastUserIntent and lastBotMessage == "おなまえは？":
-            dispatcher.utter_message('なまえをしっていませんか？だいじょうぶですか？(´･ᴗ･ ` )')
+            dispatcher.utter_message(text = 'なまえをしっていませんか？そうですか。(ｏ・_・)', image="https://media.tenor.com/-caxkmc867EAAAAC/mochi-cat.gif")
         elif 'inform_idk' in lastUserIntent and lastBotMessage == "つぎのしつもん：ごしゅっしんはどこですか。":
-            dispatcher.utter_message('ごしゅっしんをしっていませんか？だいじょうぶですか？(´･ᴗ･ ` )')
+            dispatcher.utter_message(text = 'ごしゅっしんをしっていませんか？そうですか。(ｏ・_・)', image="https://media.tenor.com/-caxkmc867EAAAAC/mochi-cat.gif")
         elif 'inform_idk' in lastUserIntent and lastBotMessage == "つぎのしつもん：なんねんせいですか。":
-            dispatcher.utter_message('ねんせいをしっていませんか？だいじょうぶですか？ (´･ᴗ･ ` )')
+            dispatcher.utter_message(text = 'なんねんせいかしっていませんか？そうですか。 (ｏ・_・)', image="https://media.tenor.com/-caxkmc867EAAAAC/mochi-cat.gif")
         elif 'inform_idk' in lastUserIntent and lastBotMessage == "つぎのしつもん：なんさいですか。":
-            dispatcher.utter_message('としをしっていませんか？だいじょうぶですか？ (´･ᴗ･ ` )')
+            dispatcher.utter_message(text = 'なんさいかしっていませんか？そうですか。 (ｏ・_・)', image="https://media.tenor.com/-caxkmc867EAAAAC/mochi-cat.gif")
         elif 'inform_idk' in lastUserIntent and lastBotMessage == "さいごのしつもん：せんこうは？":
-            dispatcher.utter_message('せんこうをしっていませんか？だいじょうぶですよ。(´･ᴗ･ ` )')
+            dispatcher.utter_message(text = 'せんこうをしっていませんか？だいじょうぶですよ。(´･ᴗ･ ` )', image="https://media.tenor.com/VcSkBaf5NMcAAAAi/mochi-cat-chibi-cat.gif")
         # Fallback if user answers bot's last question, but bot doesn't understand
         # bot just takes user's output and sticks in in the response
         elif lastBotMessage == "おなまえは？":
@@ -64,9 +64,9 @@ class ActionDefaultAskAffirmation(Action):
         # To remedy this, we are adding this 'elif' statement for the bot to respond to however
         # the user asks about the bot school year.
         elif "では、わたしの school year をきいてください。" in lastBotMessage:
-            dispatcher.utter_message('いちねんせいです！(.❛ ᴗ ❛.)')
+            dispatcher.utter_message(text='いちねんせいです！(.❛ ᴗ ❛.)', image = "https://media.tenor.com/RXzUeIltPNwAAAAi/mochi-cat.gif")
         else:
-            dispatcher.utter_message("すみません、わかりません。 Sorry, I don't quite understand (,,>﹏<,,).")
+            dispatcher.utter_message(text="すみません、わかりません。 Sorry, I don't quite understand (,,>﹏<,,).", image = "https://media.tenor.com/-caxkmc867EAAAAC/mochi-cat.gif")
 
         print(lastUserIntent)
         
@@ -101,13 +101,13 @@ class AfterHandleDidNotUnderstandAnswer(Action):
         
         # Fallback for if user says "I don't know" to bot's question
         # user says "I don't know" to answer question - bot prompts user to ask next question 
-        if 'inform_idk' in lastUserIntent and "なまえは" in lastBotMessage:
-            dispatcher.utter_message('では、わたしの name をきいてください。')
+        if 'inform_idk' in lastUserIntent and "なまえ" in lastBotMessage:
+            dispatcher.utter_message(text = 'では、わたしの name をきいてください。')
         elif 'inform_idk' in lastUserIntent and "しゅっしん" in lastBotMessage:
             dispatcher.utter_message('では、わたしの hometown をきいてください。')
         elif 'inform_idk' in lastUserIntent and "ねんせい" in lastBotMessage:
             dispatcher.utter_message('では、わたしの school year をきいてください。')
-        elif 'inform_idk' in lastUserIntent and "とし" in lastBotMessage:
+        elif 'inform_idk' in lastUserIntent and "さい" in lastBotMessage:
             dispatcher.utter_message('では、わたしの age をきいてください。')
         elif 'inform_idk' in lastUserIntent and "せんこう" in lastBotMessage:
             dispatcher.utter_message('では、わたしの major をきいてください。')
@@ -129,7 +129,7 @@ class AfterHandleDidNotUnderstandAnswer(Action):
         elif "せんこう" in lastBotMessage:
             dispatcher.utter_message('では、わたしの major をきいてください。')
         else:
-            dispatcher.utter_message('Please try the following options (1) Type こんにちは to restart the conversation OR (2) Type the last question you asked the bot to start from there.')
+            dispatcher.utter_message("I am a simple bot. Please try the following options:(1) Type こんにちは to restart the conversation OR (2)Ask me about my 'name', 'hometown', 'age', 'school year', or 'major'.")
         
         print(lastUserIntent)
         return [Restarted()]       
