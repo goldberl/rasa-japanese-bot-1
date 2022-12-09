@@ -16,6 +16,7 @@ intents:
 - inform_phone_num
 - inform_school_year
 - userQ
+- inform_idk
 responses:
   utter_hello:
   - text: こんにちは! 
@@ -78,7 +79,7 @@ responses:
   - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
     image: https://media.tenor.com/rq4fpzxyW_cAAAAd/mochi-glasses.gif
   utter_default:
-  - text: Sorry, I didn't quite catch that (,,>﹏<,,), please rephrase your answer.
+  - text: Sorry, I didn't quite catch that, please rephrase your answer.
 entities:
 - name
 - phone_num

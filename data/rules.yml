@@ -17,9 +17,15 @@ rules:
   - action: action_default_ask_affirmation
 
 # simple fallback:
-- rule: Single stage fallback | ask user to choose what they meant
+- rule: Single stage fallback
   steps:
   - intent: nlu_fallback
+  - action: action_default_ask_affirmation
+
+# User says "I don't know"
+- rule: Send user inform_idk to fallback
+  steps:
+  - intent: inform_idk
   - action: action_default_ask_affirmation
 
 #- rule: Single stage fallback | call default fallback if user is not ok

@@ -27,16 +27,30 @@ class ActionDefaultAskAffirmation(Action):
 	
 	# Last thing user typed
         lastOutput = tracker.latest_message['text']
+        # Gets the user's last intent by extracting it from tracker dict
+        lastUserIntentDictionary = tracker.latest_message['intent']
+        lastUserIntent = list(lastUserIntentDictionary.values())[0]
         
-
 	# Gets last output of bot (last question that bot asked user)
         for event in tracker.events:
             if (event.get("event") == "bot"):
                 lastBotMessage = event.get("text")
         print(lastBotMessage)
 
-	# Comments on user's last input
-        if lastBotMessage == "おなまえは？":
+	# Fallback for if user says "I don't know" to bot's question
+        if 'inform_idk' in lastUserIntent and lastBotMessage == "おなまえは？":
+            dispatcher.utter_message('なまえをしっていませんか？だいじょうぶですか？(´･ᴗ･ ` )')
+        elif 'inform_idk' in lastUserIntent and lastBotMessage == "つぎのしつもん：ごしゅっしんはどこですか。":
+            dispatcher.utter_message('ごしゅっしんをしっていませんか？だいじょうぶですか？(´･ᴗ･ ` )')
+        elif 'inform_idk' in lastUserIntent and lastBotMessage == "つぎのしつもん：なんねんせいですか。":
+            dispatcher.utter_message('ねんせいをしっていませんか？だいじょうぶですか？ (´･ᴗ･ ` )')
+        elif 'inform_idk' in lastUserIntent and lastBotMessage == "つぎのしつもん：なんさいですか。":
+            dispatcher.utter_message('としをしっていませんか？だいじょうぶですか？ (´･ᴗ･ ` )')
+        elif 'inform_idk' in lastUserIntent and lastBotMessage == "さいごのしつもん：せんこうは？":
+            dispatcher.utter_message('せんこうをしっていませんか？だいじょうぶですよ。(´･ᴗ･ ` )')
+        # Fallback if user answers bot's last question, but bot doesn't understand
+        # bot just takes user's output and sticks in in the response
+        elif lastBotMessage == "おなまえは？":
             dispatcher.utter_message('なまえは' + lastOutput + 'さんですか？いいなまえですね。よろしくおねがいします。٩(◕‿◕)۶')
         elif lastBotMessage == "つぎのしつもん：ごしゅっしんはどこですか。":
             dispatcher.utter_message('わかりました。しゅっしんは' + lastOutput + 'ですね。')
@@ -53,6 +67,8 @@ class ActionDefaultAskAffirmation(Action):
             dispatcher.utter_message('いちねんせいです！(.❛ ᴗ ❛.)')
         else:
             dispatcher.utter_message("すみません、わかりません。 Sorry, I don't quite understand (,,>﹏<,,).")
+
+        print(lastUserIntent)
         
         return [FollowupAction("after_handle_did_not_understand_answer")]	
 
@@ -74,11 +90,30 @@ class AfterHandleDidNotUnderstandAnswer(Action):
                 lastBotMessage = event.get("text")
         print(lastBotMessage)
 
+        # Gets the user's last intent by extracting it from tracker dict
+        lastUserIntentDictionary = tracker.latest_message['intent']
+        lastUserIntent = list(lastUserIntentDictionary.values())[0]
+
 	# Asks user for to ask bot a question
         # The lastBotMessage is coming from the ActionDefaultAskAffirmation
         # and these if/elif statements are checking what the bot last said
         # and using substrings of the last message to identify what the bot says next
-        if "なまえは" in lastBotMessage:
+        
+        # Fallback for if user says "I don't know" to bot's question
+        # user says "I don't know" to answer question - bot prompts user to ask next question 
+        if 'inform_idk' in lastUserIntent and "なまえは" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの name をきいてください。')
+        elif 'inform_idk' in lastUserIntent and "しゅっしん" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの hometown をきいてください。')
+        elif 'inform_idk' in lastUserIntent and "ねんせい" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの school year をきいてください。')
+        elif 'inform_idk' in lastUserIntent and "とし" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの age をきいてください。')
+        elif 'inform_idk' in lastUserIntent and "せんこう" in lastBotMessage:
+            dispatcher.utter_message('では、わたしの major をきいてください。')
+        # Fallback if user answers bot's last question, but bot doesn't understand
+        # user answers and bot prompts user to ask next question
+        elif "なまえは" in lastBotMessage:
             dispatcher.utter_message('では、わたしの name をきいてください。')
         elif "しゅっしんは" in lastBotMessage:
             dispatcher.utter_message('では、わたしの hometown をきいてください。')
@@ -96,7 +131,7 @@ class AfterHandleDidNotUnderstandAnswer(Action):
         else:
             dispatcher.utter_message('Please try the following options (1) Type こんにちは to restart the conversation OR (2) Type the last question you asked the bot to start from there.')
         
-        
+        print(lastUserIntent)
         return [Restarted()]       
 
 # not used currently
