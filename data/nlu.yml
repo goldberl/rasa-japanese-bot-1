@@ -246,3 +246,30 @@ nlu:
    - しらない
    - まだきめていません
    - まだきめていない
+- intent: inform_yes
+  examples: |
+   - yes
+   - y
+   - of course
+   - asdf
+- intent: inform_email
+  examples: |
+    - [abc@gmail.com](email)
+    - [abc@yourdomain](email)
+    - @gmail.com
+    - @dickinson.edu
+    - [xyz@gmail.com](email)
+    - [student@dickinson.edu](email)
+    - [asdfasdf@comcast.net](email)
+    - [qwerty@hotmail.com](email)
+    - [bryantt@dickinson.edu](email)
+    - [goldberl@dickinson.edu](email)
+- intent: inform_recipient
+  examples: |
+    - [Leah](recipient)
+    - [Todd](recipient)
+    - [Chris](recipient)
+    - [Steph](recipient)
+    - [Jane](recipient)
+    - [John](recipient)
+    - [Bob](recipient)

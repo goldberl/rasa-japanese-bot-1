@@ -17,6 +17,10 @@ intents:
 - inform_school_year
 - userQ
 - inform_idk
+- inform_yes
+- inform_email
+- inform_recipient
+
 responses:
   utter_hello:
   - text: こんにちは! 
@@ -80,6 +84,13 @@ responses:
     image: https://media.tenor.com/rq4fpzxyW_cAAAAd/mochi-glasses.gif
   utter_default:
   - text: Sorry, I didn't quite catch that, please rephrase your answer.
+  utter_askrecipient:
+  - text: Please type the name of the person you want to email.
+  utter_askemail:
+  - text: Please enter the email address of the person you want to email.
+  utter_askifsendemail:
+  - text: Do you want to send an email? Types 'yes' in English if so.
+
 entities:
 - name
 - phone_num
@@ -87,6 +98,10 @@ entities:
 - school_year
 - age
 - major
+- recipient
+- email
+- conversation_log
+
 slots:
   name:
     type: text
@@ -136,6 +151,31 @@ slots:
     initial_value: conversation
     mappings:
     - type: custom
+  recipient:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: recipient
+  email:
+    type: text
+    influence_conversation: true
+    mappings:
+    - type: from_entity
+      entity: email
+  conversation_log:
+    type: any
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: school_year
+
+forms:
+  email_form:
+    required_slots:
+      - recipient
+      - email
+
 actions:
 - action_check_numQ
 - action_default_ask_affirmation
@@ -143,6 +183,7 @@ actions:
 - action_restart
 - action_test
 - after_handle_did_not_understand_answer
+- action_email
 - utter_activity_slots
 - utter_age
 - utter_ask_age
@@ -164,6 +205,10 @@ actions:
 - utter_thanks_for_talking
 - utter_hello
 - utter_default
+- utter_askrecipient
+- utter_askemail
+- utter_askifsendemail
+- log_conversation
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

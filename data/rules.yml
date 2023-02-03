@@ -28,6 +28,39 @@ rules:
   - intent: inform_idk
   - action: action_default_ask_affirmation
 
+# Fallback to ensure bot understands recipient of email
+# - rule: set recipient slot
+#  steps:
+#  - intent: inform_recipient
+#  - action: action_default_ask_affirmation
+
+# Fallback to ensure bot understands email
+# - rule: set email slot
+#  steps:
+#  - intent: inform_email
+#  - action: action_default_ask_affirmation
+
+# Rule to activate email form
+# - rule: Activate email form
+#  steps:
+#  - intent: inform_yes
+#  - action: email_form
+#  - active_loop: email_form
+
+# Deactivate email form
+#- rule: Submit form
+#  condition:
+#  - active_loop: email_form
+#  steps:
+#  - action: email_form
+#  - active_loop: null
+#  - slot_was_set:
+#    - requested_slot: null
+  # The actions we want to run when the form is submitted.
+#  - action: action_email
+#  - action: utter_thanks_for_talking
+#  - action: utter_goodbye
+
 #- rule: Single stage fallback | call default fallback if user is not ok
 #  steps:
 #  - action: action_default_ask_affirmation

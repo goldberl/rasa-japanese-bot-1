@@ -2,6 +2,21 @@ version: "3.1"
 
 stories:
 
+- story: test email
+  steps:
+  - intent: inform_yes
+  - action: utter_askrecipient
+  - action: log_conversation
+  - intent: inform_recipient
+    entities:
+      - recipient
+  - action: utter_askemail
+  - action: log_conversation
+  - intent: inform_email
+    entities:
+      - email
+  - action: action_email
+
 - story: ask user questions & user asks bot questions
   steps:
   - intent: greet

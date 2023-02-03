@@ -15,6 +15,7 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.events import FollowupAction
 from rasa_sdk.events import Restarted
+import smtplib
 
 # Runs if bot does not understand user's input
 class ActionDefaultAskAffirmation(Action):
@@ -65,6 +66,14 @@ class ActionDefaultAskAffirmation(Action):
         # the user asks about the bot school year.
         elif "では、わたしの school year をきいてください。" in lastBotMessage:
             dispatcher.utter_message(text='いちねんせいです！(.❛ ᴗ ❛.)', image = "https://media.tenor.com/RXzUeIltPNwAAAAi/mochi-cat.gif")
+        # fallback for if the bot doesn't understand the receipient's name for the email or the email address
+        elif "Please type the name of the person you want to email." in lastBotMessage:
+            dispatcher.utter_message('The person you want to email is ' + lastOutput)
+            SlotSet("recipient", lastOutput)
+        elif "Please enter the email address of the person you want to email." in lastBotMessage:
+            dispatcher.utter_message('The email address is ' + lastOutput)
+            SlotSet("email", lastOutput)
+        # else
         else:
             dispatcher.utter_message(text="すみません、わかりません。 Sorry, I don't quite understand (,,>﹏<,,).", image = "https://media.tenor.com/-caxkmc867EAAAAC/mochi-cat.gif")
 
@@ -128,11 +137,94 @@ class AfterHandleDidNotUnderstandAnswer(Action):
             dispatcher.utter_message('では、わたしの age をきいてください。')
         elif "せんこう" in lastBotMessage:
             dispatcher.utter_message('では、わたしの major をきいてください。')
+        # fallback for if the bot doesn't understand the receipient's name for the email or the email address
+        elif "The person you want to email is" in lastBotMessage:
+            dispatcher.utter_message('Great. Now we need their email.')
+        elif "The email address is" in lastBotMessage:
+            dispatcher.utter_message('Thank you for the information.')
+        #else
         else:
             dispatcher.utter_message("I am a simple bot. Please try the following options:(1) Type こんにちは to restart the conversation OR (2)Ask me about my 'name', 'hometown', 'age', 'school year', or 'major'.")
         
         print(lastUserIntent)
-        return [Restarted()]       
+        return [Restarted()]
+
+#Create action to log conversation, each time called will capture last bot output and user response
+class LogConversation(Action):
+  
+    def name(self) -> Text:
+         # Name of the action
+        return "log_conversation"
+  
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+	#Try to log conversation
+        conversation_log = tracker.get_slot("conversation_log")
+        for event in tracker.events:
+            if (event.get("event") == "bot"):
+                lastBotMessage = "Bot message: " + event.get("text")
+        print("Last user message: " + tracker.latest_message.get("text"))
+        print("Last bot message: " + lastBotMessage)
+
+
+        conversation_log = str(conversation_log) + "\nUser message: " + tracker.latest_message.get("text")  + "\n" + lastBotMessage 
+        return [SlotSet("conversation_log", conversation_log)]
+
+
+# Creating new class to send emails.
+class ActionEmail(Action):
+  
+    def name(self) -> Text:
+         # Name of the action
+        return "action_email"
+  
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Tracker message log
+        #message_log = tracker.latest_message['text']
+        conversation_log = str(tracker.get_slot("conversation_log"))        
+
+        # Getting the data stored in the
+        # slots and storing them in variables.
+        # these are for the person RECIEVING the mail
+        
+        recipient = tracker.get_slot("recipient")
+        email_id = tracker.get_slot("email")
+        # recipient = "Leah"
+        # email_id = "goldberl@dickinson.edu"
+          
+        # Code to send email
+        # Creating connection using smtplib module
+        s = smtplib.SMTP('localhost')
+          
+        # Making connection secured
+        s.starttls() 
+         
+        # Authentication
+        # s.login("goldberl@dickinson.edu")
+
+        #First not utterance is "None" and couldn't figure out another way to get rid of it from the log.  Sorry.  Todd
+        conversation_log = conversation_log.replace("None", "")
+          
+        # Message to be sent
+        message = "Hello {} , \n\nThis is a demo message from the RASA Japanese chatbot! If you are seeing this, then the email function is working.\n\nRegards,\nThe Chatbot & The Programmer".format(recipient) + "\n\nPlease find the message log below: \n" + conversation_log
+        
+	# The email address below is the person who is SENDING the mail  
+        # Sending the mail
+        s.sendmail("ilovecats1205@gmail.com",email_id, message)
+          
+        # Closing the connection
+        s.quit()
+
+       
+          
+        # Confirmation message
+        dispatcher.utter_message(text="Email has been sent.")
+        return []
+       
 
 # not used currently
 class ActionCheckNumQuestions(Action):
