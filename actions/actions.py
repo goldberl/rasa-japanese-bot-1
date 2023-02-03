@@ -167,8 +167,17 @@ class LogConversation(Action):
         print("Last user message: " + tracker.latest_message.get("text"))
         print("Last bot message: " + lastBotMessage)
 
+        # Open function to open the file "conversation.txt" 
+        # (same directory) in append mode and
+        conversation_txt = open("conversation.txt","a")
 
-        conversation_log = str(conversation_log) + "\nUser message: " + tracker.latest_message.get("text")  + "\n" + lastBotMessage 
+
+        conversation_log = "\nUser message: " + tracker.latest_message.get("text")  + "\n" + lastBotMessage 
+        
+        # write latest conversations to txt file
+        conversation_txt.write(conversation_log)
+
+        conversation_txt.close()
         return [SlotSet("conversation_log", conversation_log)]
 
 
@@ -214,7 +223,7 @@ class ActionEmail(Action):
         
 	# The email address below is the person who is SENDING the mail  
         # Sending the mail
-        s.sendmail("ilovecats1205@gmail.com",email_id, message)
+        s.sendmail("ilovecats1205@gmail.com",email_id, message.encode("utf8"))
           
         # Closing the connection
         s.quit()

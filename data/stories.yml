@@ -15,48 +15,78 @@ stories:
   - intent: inform_email
     entities:
       - email
+  - action: log_conversation
   - action: action_email
+  
 
-- story: ask user questions & user asks bot questions
+- story: ask user questions & user asks bot questions (with EMAIL)
   steps:
   - intent: greet
   - action: utter_hello
+  - action: log_conversation
   - action: utter_greet
+  - action: log_conversation
   - action: utter_ask_name
+  - action: log_conversation
   - intent: inform_name
     entities:
       - name
   - action: utter_askme_name
+  - action: log_conversation
   - intent: ask_name
   - action: utter_name
+  - action: log_conversation
   - action: utter_ask_hometown
+  - action: log_conversation
   - intent: inform_hometown
     entities:
       - hometown
   - action: utter_askme_hometown
+  - action: log_conversation
   - intent: ask_hometown
   - action: utter_hometown
+  - action: log_conversation
   - action: utter_ask_school_year
+  - action: log_conversation
   - intent: inform_school_year
     entities:
       - school_year
   - action: utter_askme_school_year
+  - action: log_conversation
   - intent: ask_school_year
   - action: utter_school_year
+  - action: log_conversation
   - action: utter_ask_age
+  - action: log_conversation
   - intent: inform_age
     entities:
       - age
   - action: utter_askme_age
+  - action: log_conversation
   - intent: ask_age
   - action: utter_age
+  - action: log_conversation
   - action: utter_ask_major
+  - action: log_conversation
   - intent: inform_major
     entities:
       - major
   - action: utter_askme_major
+  - action: log_conversation
   - intent: ask_major
   - action: utter_major
+  - action: log_conversation
+  - action: utter_askifsendemail
+  - intent: inform_yes
+  - action: utter_askrecipient
+  - intent: inform_recipient
+    entities:
+      - recipient
+  - action: utter_askemail
+  - intent: inform_email
+    entities:
+      - email
+  - action: action_email
   - action: utter_thanks_for_talking
   - action: utter_goodbye
 
