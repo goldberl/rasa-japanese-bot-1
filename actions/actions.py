@@ -16,6 +16,7 @@ from rasa_sdk.events import UserUtteranceReverted
 from rasa_sdk.events import FollowupAction
 from rasa_sdk.events import Restarted
 import smtplib
+import os
 
 # Runs if bot does not understand user's input
 class ActionDefaultAskAffirmation(Action):
@@ -149,22 +150,22 @@ class AfterHandleDidNotUnderstandAnswer(Action):
         print(lastUserIntent)
         return [Restarted()]
 
-#Create action to log conversation, each time called will capture last bot output and user response
-class LogConversation(Action):
+#Create action to log conversation, each time called will capture last bot output
+class LogConversationBot(Action):
   
     def name(self) -> Text:
          # Name of the action
-        return "log_conversation"
+        return "log_conversation_bot"
   
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-	#Try to log conversation
-        conversation_log = tracker.get_slot("conversation_log")
+	
+	# Get last conversation for bot
         for event in tracker.events:
             if (event.get("event") == "bot"):
                 lastBotMessage = "Bot message: " + event.get("text")
-        print("Last user message: " + tracker.latest_message.get("text"))
+
         print("Last bot message: " + lastBotMessage)
 
         # Open function to open the file "conversation.txt" 
@@ -172,13 +173,41 @@ class LogConversation(Action):
         conversation_txt = open("conversation.txt","a")
 
 
-        conversation_log = "\nUser message: " + tracker.latest_message.get("text")  + "\n" + lastBotMessage 
+        conversation_log_bot = "\n" + lastBotMessage 
         
         # write latest conversations to txt file
-        conversation_txt.write(conversation_log)
+        conversation_txt.write(conversation_log_bot)
 
         conversation_txt.close()
-        return [SlotSet("conversation_log", conversation_log)]
+        return [SlotSet("conversation_log", conversation_log_bot)]
+
+#Create action to log conversation, each time called will capture last user response
+class LogConversationUser(Action):
+  
+    def name(self) -> Text:
+         # Name of the action
+        return "log_conversation_user"
+  
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+	
+        # print last user message
+        print("Last user message: " + tracker.latest_message.get("text"))
+
+
+        # Open function to open the file "conversation.txt" 
+        # (same directory) in append mode and
+        conversation_txt = open("conversation.txt","a")
+
+        # Get last conversation from user
+        conversation_log_user = "\nUser message: " + tracker.latest_message.get("text")
+        
+        # write latest conversations to txt file
+        conversation_txt.write(conversation_log_user)
+
+        conversation_txt.close()
+        return [SlotSet("conversation_log", conversation_log_user)]
 
 
 # Creating new class to send emails.
@@ -193,8 +222,8 @@ class ActionEmail(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         # Tracker message log
-        #message_log = tracker.latest_message['text']
-        conversation_log = str(tracker.get_slot("conversation_log"))        
+        # message_log = tracker.latest_message['text']
+        # conversation_log = str(tracker.get_slot("conversation_log"))        
 
         # Getting the data stored in the
         # slots and storing them in variables.
@@ -216,10 +245,23 @@ class ActionEmail(Action):
         # s.login("goldberl@dickinson.edu")
 
         #First not utterance is "None" and couldn't figure out another way to get rid of it from the log.  Sorry.  Todd
-        conversation_log = conversation_log.replace("None", "")
+        #conversation_log = conversation_log.replace("None", "")
+
+        # Creating string with message from conversation.txt
+        conversation_log = ""
+        
+        # Opening file
+        conversation_txt = open('conversation.txt', 'r')
+
+        # Using for loop
+        for line in conversation_txt:
+            conversation_log = conversation_log + line +'\n'
+    
+        # Closing files
+        conversation_txt.close()
           
         # Message to be sent
-        message = "Hello {} , \n\nThis is a demo message from the RASA Japanese chatbot! If you are seeing this, then the email function is working.\n\nRegards,\nThe Chatbot & The Programmer".format(recipient) + "\n\nPlease find the message log below: \n" + conversation_log
+        message = "Subject: Japanese Chatbot Message Log\n\n Hello {}, \n\nThis is a demo message from the RASA Japanese chatbot! If you are seeing this, then the email function is working.\n\nRegards,\nThe Chatbot & The Programmer".format(recipient) + "\n\nPlease find the message log below: \n" + conversation_log
         
 	# The email address below is the person who is SENDING the mail  
         # Sending the mail
@@ -228,7 +270,9 @@ class ActionEmail(Action):
         # Closing the connection
         s.quit()
 
-       
+        # Delete contents of conversation.txt
+        if os.path.exists("conversation.txt"):
+            os.remove("conversation.txt")
           
         # Confirmation message
         dispatcher.utter_message(text="Email has been sent.")

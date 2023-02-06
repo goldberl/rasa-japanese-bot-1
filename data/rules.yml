@@ -11,10 +11,10 @@ rules:
   - intent: bot_challenge
   - action: utter_iamabot
 
-- rule: send utter_default to action_default_ask_affirmation
+- rule: log utter_default in conversation log
   steps:
   - intent: utter_default
-  - action: action_default_ask_affirmation
+  - action: log_conversation_bot
 
 # simple fallback:
 - rule: Single stage fallback

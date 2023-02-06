@@ -208,7 +208,8 @@ actions:
 - utter_askrecipient
 - utter_askemail
 - utter_askifsendemail
-- log_conversation
+- log_conversation_bot
+- log_conversation_user
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

@@ -89,8 +89,6 @@ nlu:
   examples: |
     - [アメリカ](hometown)です。
     - [ちゅうごく](hometown)です
-    - [にほん](hometown)です
-    - [日本](hometown)です
     - [カリフォルニア](hometown)
     - [中国](hometown)
     - しゅっしんは[ニューヨーク](hometown)です。
@@ -165,7 +163,7 @@ nlu:
     - [歴史](major)です
     - [れきし](major)
     - [じんるいがく](major)
-    - [せいぶつがく](major) 
+    - [せいぶつがく](major)
     - [えいご](major)
     - [びじゅつ](major)
     - [びじゅつのれきし](major)
