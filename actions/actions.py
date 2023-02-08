@@ -266,7 +266,7 @@ class ActionEmail(Action):
         
 	# The email address below is the person who is SENDING the mail  
         # Sending the mail
-        s.sendmail("goldberl@dickinson.edu",email_id, message.encode("utf8"))
+        s.sendmail("academictechnology@dickinson.edu",email_id, message.encode("utf8"))
           
         # Closing the connection
         s.quit()
