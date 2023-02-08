@@ -231,6 +231,7 @@ class ActionEmail(Action):
         
         recipient = tracker.get_slot("recipient")
         email_id = tracker.get_slot("email")
+        name = tracker.get_slot("name")
         # recipient = "Leah"
         # email_id = "goldberl@dickinson.edu"
           
@@ -261,11 +262,11 @@ class ActionEmail(Action):
         conversation_txt.close()
           
         # Message to be sent
-        message = "Subject: Japanese Chatbot Message Log\n\n Hello {}, \n\nThis is a demo message from the RASA Japanese chatbot! If you are seeing this, then the email function is working.\n\nRegards,\nThe Chatbot & The Programmer".format(recipient) + "\n\nPlease find the message log below: \n" + conversation_log
+        message = "Subject: Japanese Chatbot Message Log\n\n Hello {}, \n\nThis is a message from the RASA Japanese chatbot!\n\nRegards,\nThe Dickinson College RASA Japanese Chatbot".format(recipient) + "\n\nPlease find the message log below for the conversation between the bot and " + name + ": \n" + conversation_log
         
 	# The email address below is the person who is SENDING the mail  
         # Sending the mail
-        s.sendmail("ilovecats1205@gmail.com",email_id, message.encode("utf8"))
+        s.sendmail("goldberl@dickinson.edu",email_id, message.encode("utf8"))
           
         # Closing the connection
         s.quit()
@@ -278,6 +279,23 @@ class ActionEmail(Action):
         dispatcher.utter_message(text="Email has been sent.")
         return []
        
+
+# Creating new class to send emails.
+class DeleteConversationTxt(Action):
+  
+    def name(self) -> Text:
+         # Name of the action
+        return "action_delete_conversation_txt"
+  
+    def run(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+        # Delete contents of conversation.txt
+        if os.path.exists("conversation.txt"):
+            os.remove("conversation.txt")
+        return []
+
 
 # not used currently
 class ActionCheckNumQuestions(Action):

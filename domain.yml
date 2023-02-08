@@ -18,6 +18,7 @@ intents:
 - userQ
 - inform_idk
 - inform_yes
+- inform_no
 - inform_email
 - inform_recipient
 
@@ -83,13 +84,13 @@ responses:
   - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
     image: https://media.tenor.com/rq4fpzxyW_cAAAAd/mochi-glasses.gif
   utter_default:
-  - text: Sorry, I didn't quite catch that, please rephrase your answer.
+  - text: すみません、わかりません。 Please rephrase your answer.
   utter_askrecipient:
   - text: Please type the name of the person you want to email.
   utter_askemail:
   - text: Please enter the email address of the person you want to email.
   utter_askifsendemail:
-  - text: Do you want to send an email? Types 'yes' in English if so.
+  - text: ありがとうございました！しつもんのおわりです。Do you want to send an email of the conversation log to anyone? Please type 'yes' or 'no' in English.
 
 entities:
 - name
@@ -184,6 +185,7 @@ actions:
 - action_test
 - after_handle_did_not_understand_answer
 - action_email
+- action_delete_conversation_txt
 - utter_activity_slots
 - utter_age
 - utter_ask_age

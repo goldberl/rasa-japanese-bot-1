@@ -249,7 +249,13 @@ nlu:
    - yes
    - y
    - of course
-   - asdf
+   - yes please
+- intent: inform_no
+  examples: |
+   - no
+   - no thank you
+   - nope
+   - n
 - intent: inform_email
   examples: |
     - [abc@gmail.com](email)

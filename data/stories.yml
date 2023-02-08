@@ -88,18 +88,7 @@ stories:
   - action: utter_major
   - action: log_conversation_bot
   - action: utter_askifsendemail
-  - intent: inform_yes
-  - action: utter_askrecipient
-  - intent: inform_recipient
-    entities:
-      - recipient
-  - action: utter_askemail
-  - intent: inform_email
-    entities:
-      - email
-  - action: action_email
-  - action: utter_thanks_for_talking
-  - action: utter_goodbye
+  - checkpoint: questions_finished
 
 - story: ask user questions & user asks bot questions w/o name
   steps:
@@ -156,18 +145,7 @@ stories:
   - action: utter_major
   - action: log_conversation_bot
   - action: utter_askifsendemail
-  - intent: inform_yes
-  - action: utter_askrecipient
-  - intent: inform_recipient
-    entities:
-      - recipient
-  - action: utter_askemail
-  - intent: inform_email
-    entities:
-      - email
-  - action: action_email
-  - action: utter_thanks_for_talking
-  - action: utter_goodbye
+  - checkpoint: questions_finished
 
 - story: ask user questions & user asks bot questions w/o hometown
   steps:
@@ -212,18 +190,7 @@ stories:
   - action: utter_major
   - action: log_conversation_bot
   - action: utter_askifsendemail
-  - intent: inform_yes
-  - action: utter_askrecipient
-  - intent: inform_recipient
-    entities:
-      - recipient
-  - action: utter_askemail
-  - intent: inform_email
-    entities:
-      - email
-  - action: action_email
-  - action: utter_thanks_for_talking
-  - action: utter_goodbye
+  - checkpoint: questions_finished
 
 - story: ask user questions & user asks bot questions w/o school_year
   steps:
@@ -256,18 +223,7 @@ stories:
   - action: utter_major
   - action: log_conversation_bot
   - action: utter_askifsendemail
-  - intent: inform_yes
-  - action: utter_askrecipient
-  - intent: inform_recipient
-    entities:
-      - recipient
-  - action: utter_askemail
-  - intent: inform_email
-    entities:
-      - email
-  - action: action_email
-  - action: utter_thanks_for_talking
-  - action: utter_goodbye
+  - checkpoint: questions_finished
 
 - story: ask user questions & bot doesn't detect schoolyear question
   steps:
@@ -294,18 +250,7 @@ stories:
   - action: utter_major
   - action: log_conversation_bot
   - action: utter_askifsendemail
-  - intent: inform_yes
-  - action: utter_askrecipient
-  - intent: inform_recipient
-    entities:
-      - recipient
-  - action: utter_askemail
-  - intent: inform_email
-    entities:
-      - email
-  - action: action_email
-  - action: utter_thanks_for_talking
-  - action: utter_goodbye
+  - checkpoint: questions_finished
 
 - story: ask user questions & user asks bot questions w/o age
   steps:
@@ -326,6 +271,20 @@ stories:
   - action: utter_major
   - action: log_conversation_bot
   - action: utter_askifsendemail
+  - checkpoint: questions_finished
+
+- story: ask user questions & user asks bot questions w/o major
+  steps:
+  - intent: ask_major
+  - action: log_conversation_user
+  - action: utter_major
+  - action: log_conversation_bot
+  - action: utter_askifsendemail
+  - checkpoint: questions_finished
+
+- story: user wants to send email
+  steps:
+  - checkpoint: questions_finished
   - intent: inform_yes
   - action: utter_askrecipient
   - intent: inform_recipient
@@ -339,22 +298,10 @@ stories:
   - action: utter_thanks_for_talking
   - action: utter_goodbye
 
-- story: ask user questions & user asks bot questions w/o major
+- story: user DOES NOT want to send email
   steps:
-  - intent: ask_major
-  - action: log_conversation_user
-  - action: utter_major
-  - action: log_conversation_bot
-  - action: utter_askifsendemail
-  - intent: inform_yes
-  - action: utter_askrecipient
-  - intent: inform_recipient
-    entities:
-      - recipient
-  - action: utter_askemail
-  - intent: inform_email
-    entities:
-      - email
-  - action: action_email
+  - checkpoint: questions_finished
+  - intent: inform_no
+  - action: action_delete_conversation_txt
   - action: utter_thanks_for_talking
   - action: utter_goodbye
