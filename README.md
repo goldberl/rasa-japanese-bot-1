@@ -1,4 +1,3 @@
-## Hi Noah!
 ## Japanese Chatbot for Language Learners using [Rasa](https://rasa.com/)
 
 #### This is a simple chatbot aimed to help beginner Japanese language learners practice a basic conversation. This bot will ask the user about themselves and also prompt them to ask questions back.
