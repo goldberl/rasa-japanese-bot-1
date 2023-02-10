@@ -112,16 +112,28 @@ nlu:
     - 大学の[2](school_year)ねんせいです。
     - [3](school_year)ねんせいです。
     - [4](school_year)ねんせいです。
+    - [１](school_year)ねんせいです。
+    - 大学の[２](school_year)ねんせいです。
+    - [３](school_year)ねんせいです。
+    - [４](school_year)ねんせいです。
     - Dickinsonの[一](school_year)年生です。
     - わたしは[二](school_year)年生です。
     - わたしは[三](school_year)年生です。
     - わたしは[四](school_year)年生です。
+# When putting in numbers
+# Use the normal and Japanese unicode numbers
+# CTR + SHIFT + U
+# Codes for numbers
+# 0(FF10), 1(FF11), 2(FF12), 3(FF13)... 9(FF19)
 - intent: inform_age
   examples: |
     - [18](age)さい
+    - [１８](age)さい
+    - [１９](age)さい
     - わたしは[19](age)さい
     - [30](age)
-    - [99](age)さい
+    - [３０](age)
+    - [９９](age)さい
     - [じゅうなな](age)さいです。
     - [じゅうはち](age)さいです。
     - [じゅうきゅう](age)です。

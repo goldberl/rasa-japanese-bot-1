@@ -168,9 +168,10 @@ class LogConversationBot(Action):
 
         print("Last bot message: " + lastBotMessage)
 
-        # Open function to open the file "conversation.txt" 
-        # (same directory) in append mode and
-        conversation_txt = open("conversation.txt","a")
+        # Creates/Open function to open the file "conversation_[senderID].txt" 
+        # with the senderID being unique to each user
+        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        conversation_txt = open(uniqueFile,"a")
 
 
         conversation_log_bot = "\n" + lastBotMessage 
@@ -196,9 +197,10 @@ class LogConversationUser(Action):
         print("Last user message: " + tracker.latest_message.get("text"))
 
 
-        # Open function to open the file "conversation.txt" 
-        # (same directory) in append mode and
-        conversation_txt = open("conversation.txt","a")
+        # Creates/Open function to open the file "conversation_[senderID].txt" 
+        # with the senderID being unique to each user
+        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        conversation_txt = open(uniqueFile,"a")
 
         # Get last conversation from user
         conversation_log_user = "\nUser message: " + tracker.latest_message.get("text")
@@ -245,15 +247,13 @@ class ActionEmail(Action):
         # Authentication
         # s.login("goldberl@dickinson.edu")
 
-        #First not utterance is "None" and couldn't figure out another way to get rid of it from the log.  Sorry.  Todd
-        #conversation_log = conversation_log.replace("None", "")
-
-        # Creating string with message from conversation.txt
-        conversation_log = ""
         
-        # Opening file
-        conversation_txt = open('conversation.txt', 'r')
+        # Open the file "conversation_[senderID].txt" 
+        # with the senderID being unique to each user
+        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        conversation_txt = open(uniqueFile,"r")
 
+        conversation_log = ''
         # Using for loop
         for line in conversation_txt:
             conversation_log = conversation_log + line +'\n'
@@ -262,7 +262,13 @@ class ActionEmail(Action):
         conversation_txt.close()
           
         # Message to be sent
-        message = "Subject: Japanese Chatbot Message Log\n\n Hello {}, \n\nThis is a message from the RASA Japanese chatbot!\n\nRegards,\nThe Dickinson College RASA Japanese Chatbot".format(recipient) + "\n\nPlease find the message log below for the conversation between the bot and " + name + ": \n" + conversation_log
+        # Ideally we would like to say who this conversation is from which can be extracted 
+        # from the NAME slot if the bot did not delete all the slots
+        # But the bot sometimes deletes all the slots
+        # One way we can fix this is storing the user's name in a text file and reading it
+        # Additionally, to ensure the bot understands the email address, we can put that in a 
+        # txt file as well and read it
+        message = "Subject: Japanese Chatbot Message Log\n\n Hello {}, \n\nThis is a message from the RASA Japanese chatbot!\n\nRegards,\nThe Dickinson College RASA Japanese Chatbot".format(recipient) + "\n\nPlease find the message log below for the conversation: \n" + conversation_log
         
 	# The email address below is the person who is SENDING the mail  
         # Sending the mail
@@ -271,9 +277,10 @@ class ActionEmail(Action):
         # Closing the connection
         s.quit()
 
-        # Delete contents of conversation.txt
-        if os.path.exists("conversation.txt"):
-            os.remove("conversation.txt")
+        # Delete contents of conversation_[senderID].txt
+        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        if os.path.exists(uniqueFile):
+            os.remove(uniqueFile)
           
         # Confirmation message
         dispatcher.utter_message(text="Email has been sent.")
@@ -292,8 +299,9 @@ class DeleteConversationTxt(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         # Delete contents of conversation.txt
-        if os.path.exists("conversation.txt"):
-            os.remove("conversation.txt")
+        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        if os.path.exists(uniqueFile):
+            os.remove(uniqueFile)
         return []
 
 

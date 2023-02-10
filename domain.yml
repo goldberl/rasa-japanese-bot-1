@@ -20,7 +20,7 @@ intents:
 - inform_yes
 - inform_no
 - inform_email
-- inform_recipient
+- inform_sender
 
 responses:
   utter_hello:
@@ -85,8 +85,8 @@ responses:
     image: https://media.tenor.com/rq4fpzxyW_cAAAAd/mochi-glasses.gif
   utter_default:
   - text: すみません、わかりません。 Please rephrase your answer.
-  utter_askrecipient:
-  - text: Please type the name of the person you want to email.
+  utter_asksender:
+  - text: Please type your name in English.
   utter_askemail:
   - text: Please enter the email address of the person you want to email.
   utter_askifsendemail:
@@ -99,7 +99,7 @@ entities:
 - school_year
 - age
 - major
-- recipient
+- sender
 - email
 - conversation_log
 
@@ -152,12 +152,12 @@ slots:
     initial_value: conversation
     mappings:
     - type: custom
-  recipient:
+  sender:
     type: text
     influence_conversation: true
     mappings:
     - type: from_entity
-      entity: recipient
+      entity: sender
   email:
     type: text
     influence_conversation: true
@@ -174,7 +174,7 @@ slots:
 forms:
   email_form:
     required_slots:
-      - recipient
+      - sender
       - email
 
 actions:
@@ -207,7 +207,7 @@ actions:
 - utter_thanks_for_talking
 - utter_hello
 - utter_default
-- utter_askrecipient
+- utter_asksender
 - utter_askemail
 - utter_askifsendemail
 - log_conversation_bot
