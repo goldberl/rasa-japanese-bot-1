@@ -86,7 +86,7 @@ responses:
   utter_default:
   - text: すみません、わかりません。 Please rephrase your answer.
   utter_askrecipient:
-  - text: Please type the name of the person you will email.
+  - text: Please type just the name of the person you will email.
   utter_askemail:
   - text: Please enter the email address of the person you want to email.
   utter_askifsendemail:
@@ -99,9 +99,6 @@ entities:
 - school_year
 - age
 - major
-- recipient
-- email
-- conversation_log
 
 slots:
   name:
@@ -152,30 +149,6 @@ slots:
     initial_value: conversation
     mappings:
     - type: custom
-  recipient:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: recipient
-  email:
-    type: text
-    influence_conversation: true
-    mappings:
-    - type: from_entity
-      entity: email
-  conversation_log:
-    type: any
-    influence_conversation: false
-    mappings:
-    - type: from_entity
-      entity: school_year
-
-forms:
-  email_form:
-    required_slots:
-      - recipient
-      - email
 
 actions:
 - action_check_numQ
@@ -212,6 +185,7 @@ actions:
 - utter_askifsendemail
 - log_conversation_bot
 - log_conversation_user
+- collect_email_info
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true

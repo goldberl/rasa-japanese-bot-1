@@ -180,7 +180,6 @@ class LogConversationBot(Action):
         conversation_txt.write(conversation_log_bot)
 
         conversation_txt.close()
-        return [SlotSet("conversation_log", conversation_log_bot)]
 
 #Create action to log conversation, each time called will capture last user response
 class LogConversationUser(Action):
@@ -203,13 +202,47 @@ class LogConversationUser(Action):
         conversation_txt = open(uniqueFile,"a")
 
         # Get last conversation from user
-        conversation_log_user = "\nUser message: " + tracker.latest_message.get("text")
+        conversation_log_user = tracker.latest_message.get("text")
         
         # write latest conversations to txt file
-        conversation_txt.write(conversation_log_user)
+        conversation_txt.write("\nUser message: " + conversation_log_user)
+        conversation_txt.close()         
 
-        conversation_txt.close()
-        return [SlotSet("conversation_log", conversation_log_user)]
+
+# Action to create text file with information to send email
+class CollectEmailInfo(Action):
+  
+   def name(self) -> Text:
+        # Name of the action
+       return "collect_email_info"
+  
+   def run(self, dispatcher: CollectingDispatcher,
+           tracker: Tracker,
+           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+
+       # Get last conversation from user
+       conversation_log_user = tracker.latest_message.get("text")
+
+       # Extracting user name, recipient of email name, and email address
+       # Gets the user's last intent by extracting it from tracker dict
+       lastUserIntentDictionary = tracker.latest_message['intent']
+       lastUserIntent = list(lastUserIntentDictionary.values())[0]
+
+       if "inform_recipient" in lastUserIntent:
+           emailFile = "emailInfo" + tracker.sender_id + ".txt"
+           email_txt = open(emailFile,"a")
+           email_txt.write(conversation_log_user +"\n")
+            
+
+       emailAd = ''
+       if "inform_email" in lastUserIntent:
+           emailFile = "emailInfo" + tracker.sender_id + ".txt"
+           email_txt = open(emailFile,"a")
+           email_txt.write(conversation_log_user)
+           for word in lastUserIntent:
+               if "@" in word:
+                   email_txt.write(word + "\n")
+       email_txt.close()
 
 
 # Creating new class to send emails.
@@ -230,10 +263,19 @@ class ActionEmail(Action):
         # Getting the data stored in the
         # slots and storing them in variables.
         # these are for the person RECIEVING the mail
-        
-        recipient = tracker.get_slot("recipient")
-        email_id = tracker.get_slot("email")
+
+        emailFile = "emailInfo" + tracker.sender_id + ".txt"
+        email_txt = open(emailFile,"r") 
+
         name = tracker.get_slot("name")
+        recipient = email_txt.readline()
+        email_id = email_txt.readline()
+ 
+        email_txt.close()        
+        
+        # recipient = tracker.get_slot("recipient")
+        # email_id = tracker.get_slot("email")
+        # name = tracker.get_slot("name")
         # recipient = "Leah"
         # email_id = "goldberl@dickinson.edu"
           
@@ -281,9 +323,13 @@ class ActionEmail(Action):
         uniqueFile = "conversation" + tracker.sender_id + ".txt"
         if os.path.exists(uniqueFile):
             os.remove(uniqueFile)
-          
-        # Confirmation message
-        dispatcher.utter_message(text="Email has been sent.")
+            # Confirmation message
+            dispatcher.utter_message(text="Email has been sent.")
+        
+        emailFile = "emailInfo" + tracker.sender_id + ".txt"
+        if os.path.exists(emailFile):
+            os.remove(emailFile)          
+
         return []
        
 

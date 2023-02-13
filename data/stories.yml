@@ -6,16 +6,11 @@ stories:
   steps:
   - intent: inform_yes
   - action: utter_askrecipient
-  - action: log_conversation_bot
   - intent: inform_recipient
-    entities:
-      - recipient
+  - action: collect_email_info
   - action: utter_askemail
-  - action: log_conversation_bot
   - intent: inform_email
-    entities:
-      - email
-  - action: log_conversation_user
+  - action: collect_email_info
   - action: action_email
   
 
@@ -288,12 +283,10 @@ stories:
   - intent: inform_yes
   - action: utter_askrecipient
   - intent: inform_recipient
-    entities:
-      - recipient
+  - action: collect_email_info
   - action: utter_askemail
   - intent: inform_email
-    entities:
-      - email
+  - action: collect_email_info
   - action: action_email
   - action: utter_thanks_for_talking
   - action: utter_goodbye
