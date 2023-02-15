@@ -55,6 +55,8 @@ class ActionDefaultAskAffirmation(Action):
         elif lastBotMessage == "おなまえは？":
             dispatcher.utter_message('なまえは' + lastOutput + 'さんですか？いいなまえですね。よろしくおねがいします。٩(◕‿◕)۶')
         elif lastBotMessage == "つぎのしつもん：ごしゅっしんはどこですか。":
+	    #The last output for these cases is probably not often going to be just the name of 	    #the hometown and could be something like ごしゅっしんはhometownです or just hometownです
+ 	    #When this occurs the dispatched method looks weird and is gramtically incorrect.
             dispatcher.utter_message('わかりました。しゅっしんは' + lastOutput + 'ですね。')
         elif lastBotMessage == "つぎのしつもん：なんねんせいですか。":
             dispatcher.utter_message('だいがくの' + lastOutput + 'ねんせいですか？それはたのしいです。')
