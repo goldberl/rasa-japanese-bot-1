@@ -170,7 +170,7 @@ class LogConversationBot(Action):
 
         # Creates/Open function to open the file "conversation_[senderID].txt" 
         # with the senderID being unique to each user
-        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        uniqueFile = "conversationLogs/conversation_" + tracker.sender_id + ".txt"
         conversation_txt = open(uniqueFile,"a")
 
 
@@ -198,7 +198,7 @@ class LogConversationUser(Action):
 
         # Creates/Open function to open the file "conversation_[senderID].txt" 
         # with the senderID being unique to each user
-        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        uniqueFile = "conversationLogs/conversation_" + tracker.sender_id + ".txt"
         conversation_txt = open(uniqueFile,"a")
 
         # Get last conversation from user
@@ -229,17 +229,18 @@ class CollectEmailInfo(Action):
        lastUserIntent = list(lastUserIntentDictionary.values())[0]
 
        if "inform_recipient" in lastUserIntent:
-           emailFile = "emailInfo" + tracker.sender_id + ".txt"
+           emailFile = "emailInfo/emailInfo_" + tracker.sender_id + ".txt"
            email_txt = open(emailFile,"a")
            email_txt.write(conversation_log_user +"\n")
             
 
        emailAd = ''
        if "inform_email" in lastUserIntent:
-           emailFile = "emailInfo" + tracker.sender_id + ".txt"
+           print("intent is inform email")
+           emailFile = "emailInfo/emailInfo_" + tracker.sender_id + ".txt"
            email_txt = open(emailFile,"a")
-           email_txt.write(conversation_log_user)
-           for word in lastUserIntent:
+           words = conversation_log_user.split()
+           for word in words:
                if "@" in word:
                    email_txt.write(word + "\n")
        email_txt.close()
@@ -264,7 +265,7 @@ class ActionEmail(Action):
         # slots and storing them in variables.
         # these are for the person RECIEVING the mail
 
-        emailFile = "emailInfo" + tracker.sender_id + ".txt"
+        emailFile = "emailInfo/emailInfo_" + tracker.sender_id + ".txt"
         email_txt = open(emailFile,"r") 
 
         name = tracker.get_slot("name")
@@ -292,7 +293,7 @@ class ActionEmail(Action):
         
         # Open the file "conversation_[senderID].txt" 
         # with the senderID being unique to each user
-        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        uniqueFile = "conversationLogs/conversation_" + tracker.sender_id + ".txt"
         conversation_txt = open(uniqueFile,"r")
 
         conversation_log = ''
@@ -310,7 +311,7 @@ class ActionEmail(Action):
         # One way we can fix this is storing the user's name in a text file and reading it
         # Additionally, to ensure the bot understands the email address, we can put that in a 
         # txt file as well and read it
-        message = "Subject: Japanese Chatbot Message Log\n\n Hello {}, \n\nThis is a message from the RASA Japanese chatbot!\n\nRegards,\nThe Dickinson College RASA Japanese Chatbot".format(recipient) + "\n\nPlease find the message log below for the conversation: \n" + conversation_log
+        message = "Subject: Japanese Chatbot Message Log\n\n Hello {} \n\nThis is a message from the RASA Japanese chatbot!\n\nRegards,\nThe Dickinson College RASA Japanese Chatbot".format(recipient) + "\n\nPlease find the message log below for the conversation: \n" + conversation_log
         
 	# The email address below is the person who is SENDING the mail  
         # Sending the mail
@@ -320,13 +321,13 @@ class ActionEmail(Action):
         s.quit()
 
         # Delete contents of conversation_[senderID].txt
-        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        uniqueFile = "conversationLogs/conversation_" + tracker.sender_id + ".txt"
         if os.path.exists(uniqueFile):
             os.remove(uniqueFile)
             # Confirmation message
             dispatcher.utter_message(text="Email has been sent.")
         
-        emailFile = "emailInfo" + tracker.sender_id + ".txt"
+        emailFile = "emailInfo/emailInfo_" + tracker.sender_id + ".txt"
         if os.path.exists(emailFile):
             os.remove(emailFile)          
 
@@ -345,7 +346,7 @@ class DeleteConversationTxt(Action):
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
 
         # Delete contents of conversation.txt
-        uniqueFile = "conversation" + tracker.sender_id + ".txt"
+        uniqueFile = "conversationLogs/conversation_" + tracker.sender_id + ".txt"
         if os.path.exists(uniqueFile):
             os.remove(uniqueFile)
         return []

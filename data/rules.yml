@@ -13,7 +13,7 @@ rules:
 
 - rule: log utter_default in conversation log
   steps:
-  - intent: utter_default
+  - action: utter_default
   - action: log_conversation_bot
 
 # simple fallback:

@@ -84,7 +84,7 @@ responses:
   - text: せんこうはもちろんにほんごです。♡( ◡‿◡ )
     image: https://media.tenor.com/rq4fpzxyW_cAAAAd/mochi-glasses.gif
   utter_default:
-  - text: すみません、わかりません。 Please rephrase your answer.
+  - text: すみません、わかりません。 Please use hiragana and rephrase your answer.
   utter_askrecipient:
   - text: Please type just the name of the person you will email.
   utter_askemail:
